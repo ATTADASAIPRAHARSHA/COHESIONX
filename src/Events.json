@@ -1,0 +1,583 @@
+[
+  {
+    "id": 1,
+    "start": "2024-12-25T00:00:00",
+    "end": "2024-12-25T23:59:59",
+    "title": "Christmas Day",
+    "desc": "Celebrate the joy of Christmas with family and friends.",
+    "images": [
+      "https://example.com/images/christmas1.jpg",
+      "https://example.com/images/christmas2.jpg"
+    ],
+    "org": "Holiday Events Inc.",
+    "content": "Christmas is a time for giving, reflecting, and creating lasting memories with loved ones. Gather around the tree, exchange gifts, and enjoy festive meals.Christmas is a time for giving, reflecting, and creating lasting memories with loved ones. Gather around the tree, exchange gifts, and enjoy festive meals.Christmas is a time for giving, reflecting, and creating lasting memories with loved ones. Gather around the tree, exchange gifts, and enjoy festive meals.",
+    "points": [
+      "Exchange gifts with family and friends",
+      "Prepare and share traditional Christmas dinner",
+      "Decorate the Christmas tree and home",
+      "Attend Christmas church services",
+      "Sing Christmas carols and festive songs",
+      "Watch classic Christmas movies",
+      "Send Christmas cards and greetings"
+    ],
+    "registe":"true"
+  },
+  {
+    "id": 2,
+    "start": "2023-12-31T00:00:00",
+    "end": "2023-12-31T23:59:59",
+    "title": "New Year's Eve",
+    "desc": "Ring in the New Year with a night of celebrations.",
+    "images": [
+      "https://example.com/images/newyear1.jpg",
+      "https://example.com/images/newyear2.jpg"
+    ],
+    "org": "Global Celebrations",
+    "content": "New Year's Eve is a global celebration that marks the end of the old year and the beginning of a new one. Celebrate with fireworks, countdowns, and festivities that bring people together.New Year's Eve is a global celebration that marks the end of the old year and the beginning of a new one. Celebrate with fireworks, countdowns, and festivities that bring people together.New Year's Eve is a global celebration that marks the end of the old year and the beginning of a new one. Celebrate with fireworks, countdowns, and festivities that bring people together.",
+    "points": [
+      "Watch the countdown to midnight",
+      "Enjoy fireworks displays",
+      "Make New Year's resolutions",
+      "Toast with champagne at midnight",
+      "Attend New Year's Eve parties",
+      "Sing Auld Lang Syne",
+      "Share midnight kisses and wishes"
+    ],
+    "registe":"false"
+  },
+    {
+      "id": 3,
+      "start": "2024-02-14T00:00:00",
+      "end": "2024-02-14T23:59:59",
+      "title": "Valentine's Day",
+      "desc": "A day to celebrate love and affection.",
+      "images": [
+        "https://example.com/images/valentines1.jpg",
+        "https://example.com/images/valentines2.jpg"
+      ],
+      "org": "Romantic Events Co.",
+      "content": "Valentine's Day is a celebration of love, affection, and relationships. It is an opportunity to show appreciation to those you love through thoughtful gestures, gifts, and shared moments.Valentine's Day is a celebration of love, affection, and relationships. It is an opportunity to show appreciation to those you love through thoughtful gestures, gifts, and shared moments.Valentine's Day is a celebration of love, affection, and relationships. It is an opportunity to show appreciation to those you love through thoughtful gestures, gifts, and shared moments.",
+      "points": [
+        "Exchange romantic cards and letters",
+        "Share special dinner with loved ones",
+        "Give chocolates and flowers",
+        "Plan romantic surprises",
+        "Create handmade gifts",
+        "Take romantic photos together",
+        "Write love notes"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 4,
+      "start": "2024-11-28T00:00:00",
+      "end": "2024-11-28T23:59:59",
+      "title": "Thanksgiving",
+      "desc": "Give thanks and enjoy a feast with family.",
+      "images": [
+        "https://example.com/images/thanksgiving1.jpg",
+        "https://example.com/images/thanksgiving2.jpg"
+      ],
+      "org": "Festive Gatherings LLC",
+      "content": "Thanksgiving is a time to gather with family and friends to give thanks for the blessings of the past year. A traditional feast often includes turkey, stuffing, and pumpkin pie.Thanksgiving is a time to gather with family and friends to give thanks for the blessings of the past year. A traditional feast often includes turkey, stuffing, and pumpkin pie.Thanksgiving is a time to gather with family and friends to give thanks for the blessings of the past year. A traditional feast often includes turkey, stuffing, and pumpkin pie.",
+      "points": [
+        "Prepare traditional turkey dinner",
+        "Share gratitude with family and friends",
+        "Watch Thanksgiving Day parade",
+        "Play family games and activities",
+        "Enjoy pumpkin pie and desserts",
+        "Watch football games",
+        "Create thankful messages"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 5,
+      "start": "2024-07-04T00:00:00",
+      "end": "2024-07-04T23:59:59",
+      "title": "Independence Day",
+      "desc": "Celebrate the nation's independence with fireworks and festivities.",
+      "images": [
+        "https://example.com/images/independence1.jpg",
+        "https://example.com/images/independence2.jpg"
+      ],
+      "org": "Patriotic Events",
+      "content": "Independence Day commemorates the birth of the United States. Enjoy fireworks, parades, barbecues, and patriotic displays as the country celebrates its freedom.Independence Day commemorates the birth of the United States. Enjoy fireworks, parades, barbecues, and patriotic displays as the country celebrates its freedom.Independence Day commemorates the birth of the United States. Enjoy fireworks, parades, barbecues, and patriotic displays as the country celebrates its freedom.",
+      "points": [
+        "Watch fireworks displays",
+        "Attend patriotic parades",
+        "Host backyard barbecues",
+        "Display American flags",
+        "Sing patriotic songs",
+        "Participate in community events",
+        "Share historical stories"
+      ],
+    "registe":"true"
+    }
+  ,
+    {
+      "id": 6,
+      "start": "2024-10-31T00:00:00",
+      "end": "2024-10-31T23:59:59",
+      "title": "Halloween",
+      "desc": "Dress up in costumes and enjoy spooky activities.",
+      "images": [
+        "https://example.com/images/halloween1.jpg",
+        "https://example.com/images/halloween2.jpg"
+      ],
+      "org": "Spooky Fun Inc.",
+      "content": "Halloween is a fun and spooky celebration where people dress in costumes, carve pumpkins, and participate in trick-or-treating. It's a day to embrace the eerie and enjoy thrilling activities.Halloween is a fun and spooky celebration where people dress in costumes, carve pumpkins, and participate in trick-or-treating. It's a day to embrace the eerie and enjoy thrilling activities.Halloween is a fun and spooky celebration where people dress in costumes, carve pumpkins, and participate in trick-or-treating. It's a day to embrace the eerie and enjoy thrilling activities.",
+      "points": [
+        "Trick-or-treat in neighborhoods",
+        "Carve jack-o'-lanterns",
+        "Wear creative costumes",
+        "Decorate house with spooky items",
+        "Attend Halloween parties",
+        "Tell ghost stories",
+        "Create haunted houses"
+      ],
+    "registe":"false"
+    },
+    {
+      "id": 7,
+      "start": "2024-11-11T00:00:00",
+      "end": "2024-11-11T23:59:59",
+      "title": "Veterans Day",
+      "desc": "Honor and celebrate the service of all U.S. military veterans.",
+      "images": [
+        "https://example.com/images/veterans1.jpg",
+        "https://example.com/images/veterans2.jpg"
+      ],
+      "org": "Honor Events",
+      "content": "Veterans Day is a time to honor the men and women who have served in the military. It's a day to recognize their sacrifices and express gratitude for their service.Veterans Day is a time to honor the men and women who have served in the military. It's a day to recognize their sacrifices and express gratitude for their service.Veterans Day is a time to honor the men and women who have served in the military. It's a day to recognize their sacrifices and express gratitude for their service.",
+      "points": [
+        "Attend memorial services",
+        "Visit veterans' memorials",
+        "Display American flags",
+        "Thank veterans for their service",
+        "Participate in moment of silence",
+        "Support veterans' organizations",
+        "Share veterans' stories"
+      ],
+    "registe":"false"
+    },
+    {
+      "id": 8,
+      "start": "2024-04-01T00:00:00",
+      "end": "2024-04-01T23:59:59",
+      "title": "April Fool's Day",
+      "desc": "A day for pranks and laughter.",
+      "images": [
+        "https://example.com/images/aprilfools1.jpg",
+        "https://example.com/images/aprilfools2.jpg"
+      ],
+      "org": "Fun Times Co.",
+      "content": "April Fool's Day is a day of fun and humor, where pranks and jokes are played on friends and family. It's a lighthearted celebration that encourages laughter and creativity.April Fool's Day is a day of fun and humor, where pranks and jokes are played on friends and family. It's a lighthearted celebration that encourages laughter and creativity.April Fool's Day is a day of fun and humor, where pranks and jokes are played on friends and family. It's a lighthearted celebration that encourages laughter and creativity.",
+      "points": [
+        "Plan harmless pranks",
+        "Share funny jokes",
+        "Create humorous situations",
+        "Play tricks on friends",
+        "Share funny stories",
+        "Make fake announcements",
+        "Document reactions"
+      ],
+    "registe":"false"
+    }
+  ,
+    {
+      "id": 9,
+      "start": "2024-05-12T00:00:00",
+      "end": "2024-05-12T23:59:59",
+      "title": "Mother's Day",
+      "desc": "Celebrate and honor mothers.",
+      "images": [
+        "https://example.com/images/mothersday1.jpg",
+        "https://example.com/images/mothersday2.jpg"
+      ],
+      "org": "Family Celebrations",
+      "content": "Mother's Day is a day to show appreciation for mothers and mother figures. It is celebrated with gifts, meals, and gestures of love to honor their contributions and sacrifices.",
+      "points": [
+        "Prepare special breakfast in bed",
+        "Give thoughtful cards and gifts",
+        "Arrange family gatherings",
+        "Take family photos",
+        "Plan special outings",
+        "Share cherished memories",
+        "Create handmade presents"
+      ],
+    "registe":"false"
+    },
+    {
+      "id": 10,
+      "start": "2024-06-16T00:00:00",
+      "end": "2024-06-16T23:59:59",
+      "title": "Father's Day",
+      "desc": "Celebrate and honor fathers.",
+      "images": [
+        "https://example.com/images/fathersday1.jpg",
+        "https://example.com/images/fathersday2.jpg"
+      ],
+      "org": "Family Celebrations",
+      "content": "Father's Day is a time to recognize the hard work and love of fathers. Celebrate with gifts, heartfelt messages, and activities that highlight the importance of fatherhood.",
+      "points": [
+        "Plan outdoor activities",
+        "Host family barbecues",
+        "Give personalized gifts",
+        "Share favorite memories",
+        "Watch sports together",
+        "Create photo albums",
+        "Write heartfelt messages"
+      ],
+    "registe":"false"
+    },
+    {
+      "id": 11,
+      "start": "2024-03-17T00:00:00",
+      "end": "2024-03-17T23:59:59",
+      "title": "St. Patrick's Day",
+      "desc": "Celebrate Irish culture with parades and green attire.",
+      "images": [
+        "https://example.com/images/stpatricks1.jpg",
+        "https://example.com/images/stpatricks2.jpg"
+      ],
+      "org": "Cultural Events LLC",
+      "content": "St. Patrick's Day is a celebration of Irish heritage, featuring parades, music, and people wearing green. It's a time to enjoy Irish food and beverages and share in the spirit of the day.",
+      "points": [
+        "Wear green clothing",
+        "Attend St. Patrick's Day parades",
+        "Enjoy Irish music and dance",
+        "Try traditional Irish foods",
+        "Share Irish folklore",
+        "Participate in community events",
+        "Decorate with shamrocks"
+      ],
+    "registe":"true"
+    }
+  ,
+    {
+      "id": 12,
+      "start": "2024-09-02T00:00:00",
+      "end": "2024-09-02T23:59:59",
+      "title": "Labor Day",
+      "desc": "A day to honor the American labor movement.",
+      "images": [
+        "https://example.com/images/laborday1.jpg",
+        "https://example.com/images/laborday2.jpg"
+      ],
+      "org": "Worker Celebrations",
+      "content": "Labor Day celebrates the contributions of American workers and the labor movement. It's a time to relax, enjoy time with family, and appreciate the workforce's efforts.",
+      "points": [
+        "Attend community parades",
+        "Host backyard barbecues",
+        "Participate in local events",
+        "Recognize workers' contributions",
+        "Enjoy end-of-summer activities",
+        "Share labor movement history",
+        "Plan family gatherings"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 13,
+      "start": "2024-10-09T00:00:00",
+      "end": "2024-10-09T23:59:59",
+      "title": "Columbus Day",
+      "desc": "A day to commemorate Christopher Columbus' arrival in the Americas.",
+      "images": [
+        "https://example.com/images/columbusday1.jpg",
+        "https://example.com/images/columbusday2.jpg"
+      ],
+      "org": "Historical Events",
+      "content": "Columbus Day marks the landing of Christopher Columbus in the Americas. It's a day to reflect on exploration, history, and the diverse cultures that shape the world today.",
+      "points": [
+        "Learn about historical voyages",
+        "Visit historical museums",
+        "Attend cultural festivals",
+        "Study navigation history",
+        "Explore cultural diversity",
+        "Share educational stories",
+        "Participate in community events"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 14,
+      "start": "2024-03-08T00:00:00",
+      "end": "2024-03-08T23:59:59",
+      "title": "International Women's Day",
+      "desc": "Celebrate the achievements of women worldwide.",
+      "images": [
+        "https://example.com/images/womensday1.jpg",
+        "https://example.com/images/womensday2.jpg"
+      ],
+      "org": "Global Celebrations",
+      "content": "International Women's Day honors the social, economic, cultural, and political achievements of women. It's a day to advocate for gender equality and celebrate women's contributions globally.",
+      "points": [
+        "Attend women's rights events",
+        "Share inspiring stories",
+        "Support women-owned businesses",
+        "Promote gender equality",
+        "Recognize women's achievements",
+        "Participate in awareness campaigns",
+        "Host educational seminars"
+      ],
+    "registe":"true"
+    }
+  ,
+    {
+      "id": 15,
+      "start": "2024-06-21T00:00:00",
+      "end": "2024-06-21T23:59:59",
+      "title": "Summer Solstice",
+      "desc": "Celebrate the longest day of the year.",
+      "images": [
+        "https://example.com/images/summersolstice1.jpg",
+        "https://example.com/images/summersolstice2.jpg"
+      ],
+      "org": "Seasonal Events",
+      "content": "The Summer Solstice marks the longest day of the year and the official start of summer. It's a time to enjoy outdoor activities, festivals, and celebrate the warmth of the season.",
+      "points": [
+        "Host outdoor celebrations",
+        "Observe sunrise/sunset times",
+        "Plan nature activities",
+        "Attend solstice festivals",
+        "Practice summer traditions",
+        "Create sun-themed art",
+        "Organize outdoor games"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 16,
+      "start": "2024-01-01T00:00:00",
+      "end": "2024-01-01T23:59:59",
+      "title": "New Year's Day",
+      "desc": "The first day of the year, a time for new beginnings.",
+      "images": [
+        "https://example.com/images/newyear1.jpg",
+        "https://example.com/images/newyear2.jpg"
+      ],
+      "org": "Holiday Events",
+      "content": "New Year's Day marks the start of a new year and offers a fresh beginning. It's a time for reflection on the past year and setting new goals for the year ahead.",
+      "points": [
+        "Make New Year resolutions",
+        "Share goals for the year",
+        "Host brunch gatherings",
+        "Start new traditions",
+        "Practice self-reflection",
+        "Plan yearly objectives",
+        "Connect with loved ones"
+      ],
+    "registe":"false"
+    },
+    {
+      "id": 17,
+      "start": "2024-05-25T00:00:00",
+      "end": "2024-05-25T23:59:59",
+      "title": "Memorial Day",
+      "desc": "Honor the fallen heroes of the U.S. military.",
+      "images": [
+        "https://example.com/images/memorialday1.jpg",
+        "https://example.com/images/memorialday2.jpg"
+      ],
+      "org": "Honoring Heroes",
+      "content": "Memorial Day is a day to remember and honor those who have given their lives for the country. It is often marked with ceremonies, parades, and the decoration of veterans' graves.",
+      "points": [
+        "Visit military memorials",
+        "Attend memorial services",
+        "Place flags on graves",
+        "Participate in moment of silence",
+        "Share veterans' stories",
+        "Join community parades",
+        "Support military families"
+      ],
+    "registe":"true"
+    }
+  ,
+    {
+      "id": 18,
+      "start": "2024-08-19T00:00:00",
+      "end": "2024-08-19T23:59:59",
+      "title": "World Photography Day",
+      "desc": "Celebrate the art of photography.",
+      "images": [
+        "https://example.com/images/photographyday1.jpg",
+        "https://example.com/images/photographyday2.jpg"
+      ],
+      "org": "Artistic Events",
+      "content": "World Photography Day celebrates the art of photography, encouraging people to capture moments and preserve memories. It's a day to appreciate the power of visual storytelling.",
+      "points": [
+        "Share favorite photographs",
+        "Attend photography exhibitions",
+        "Learn new photography skills",
+        "Organize photo walks",
+        "Join photography contests",
+        "Create photo collections",
+        "Study photography history"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 19,
+      "start": "2024-07-14T00:00:00",
+      "end": "2024-07-14T23:59:59",
+      "title": "Bastille Day",
+      "desc": "Celebrate French Revolution and the values of liberty and equality.",
+      "images": [
+        "https://example.com/images/bastilleday1.jpg",
+        "https://example.com/images/bastilleday2.jpg"
+      ],
+      "org": "Cultural Events",
+      "content": "Bastille Day marks the anniversary of the French Revolution, commemorating the storming of the Bastille. It's a celebration of liberty, equality, and fraternity with fireworks and parades.",
+      "points": [
+        "Attend French cultural events",
+        "Watch fireworks displays",
+        "Learn French history",
+        "Enjoy French cuisine",
+        "Participate in parades",
+        "Listen to French music",
+        "Share revolutionary stories"
+      ],
+    "registe":"false"
+    },
+    {
+      "id": 20,
+      "start": "2024-02-12T00:00:00",
+      "end": "2024-02-12T23:59:59",
+      "title": "Lincoln's Birthday",
+      "desc": "Celebrate the birthday of Abraham Lincoln.",
+      "images": [
+        "https://example.com/images/lincolnbirthday1.jpg",
+        "https://example.com/images/lincolnbirthday2.jpg"
+      ],
+      "org": "Historical Events",
+      "content": "Lincoln's Birthday honors the life and legacy of the 16th President of the United States. It's a day to reflect on his contributions to the nation's growth and ideals.",
+      "points": [
+        "Study Lincoln's speeches",
+        "Visit historical sites",
+        "Read about Civil War history",
+        "Share Lincoln's legacy",
+        "Attend memorial events",
+        "Learn presidential facts",
+        "Explore American history"
+      ],
+    "registe":"true"
+    }
+  ,
+    {
+      "id": 21,
+      "start": "2024-12-31T00:00:00",
+      "end": "2024-12-31T23:59:59",
+      "title": "New Year's Eve Party",
+      "desc": "Celebrate the upcoming year with an exciting party.",
+      "images": [
+        "https://example.com/images/newyeareve1.jpg",
+        "https://example.com/images/newyeareve2.jpg"
+      ],
+      "org": "Party Events",
+      "content": "New Year's Eve Party is a celebration of the year's end, filled with live music, dancing, and a countdown to the new year. It's an exciting way to bid farewell to the old year and welcome the new.",
+      "points": [
+        "Plan countdown celebrations",
+        "Organize party decorations",
+        "Create party playlists",
+        "Prepare festive foods",
+        "Set up photo booths",
+        "Arrange party games",
+        "Plan midnight activities"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 22,
+      "start": "2024-08-10T00:00:00",
+      "end": "2024-08-10T23:59:59",
+      "title": "International Youth Day",
+      "desc": "Celebrate the youth and their contributions.",
+      "images": [
+        "https://example.com/images/youthday1.jpg",
+        "https://example.com/images/youthday2.jpg"
+      ],
+      "org": "Youth Organizations",
+      "content": "International Youth Day celebrates the role of young people in shaping society. It encourages youth participation and highlights their contributions in various fields.",
+      "points": [
+        "Organize youth forums",
+        "Support youth initiatives",
+        "Share success stories",
+        "Host educational workshops",
+        "Promote youth leadership",
+        "Create mentorship programs",
+        "Celebrate young achievements"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 23,
+      "start": "2024-09-21T00:00:00",
+      "end": "2024-09-21T23:59:59",
+      "title": "International Day of Peace",
+      "desc": "Promote peace and non-violence.",
+      "images": [
+        "https://example.com/images/peaceday1.jpg",
+        "https://example.com/images/peaceday2.jpg"
+      ],
+      "org": "Peace Initiatives",
+      "content": "International Day of Peace is dedicated to strengthening the ideals of peace, non-violence, and harmony across the globe. It encourages individuals to participate in activities that promote understanding and cooperation.",
+      "points": [
+        "Organize peace rallies",
+        "Practice meditation",
+        "Share peace messages",
+        "Support conflict resolution",
+        "Create peace art",
+        "Host multicultural events",
+        "Promote understanding"
+      ],
+    "registe":"false"
+    },
+    {
+      "id": 24,
+      "start": "2024-12-24T00:00:00",
+      "end": "2024-12-24T23:59:59",
+      "title": "Christmas Eve",
+      "desc": "A night of joy and anticipation for Christmas Day.",
+      "images": [
+        "https://example.com/images/christmaseve1.jpg",
+        "https://example.com/images/christmaseve2.jpg"
+      ],
+      "org": "Holiday Events",
+      "content": "Christmas Eve is a time for reflection and preparation for the big day ahead. It's a time to gather with family, enjoy festive meals, and anticipate the arrival of Christmas.",
+      "points": [
+        "Prepare Christmas cookies",
+        "Attend evening services",
+        "Track Santa's journey",
+        "Read Christmas stories",
+        "Set out milk and cookies",
+        "Wrap last-minute gifts",
+        "Share family traditions"
+      ],
+    "registe":"true"
+    },
+    {
+      "id": 25,
+      "start": "2024-10-31T00:00:00",
+      "end": "2024-10-31T23:59:59",
+      "title": "Halloween Costume Contest",
+      "desc": "Show off your spooky and creative costumes.",
+      "images": [
+        "https://example.com/images/costumecontest1.jpg",
+        "https://example.com/images/costumecontest2.jpg"
+      ],
+      "org": "Spooky Fun LLC",
+      "content": "The Halloween Costume Contest is a fun event where participants show off their most creative and spooky costumes. It's a chance to compete for prizes and celebrate Halloween in style.",
+      "points": [
+        "Design unique costumes",
+        "Practice costume presentations",
+        "Set up photo opportunities",
+        "Organize judging criteria",
+        "Prepare prize categories",
+        "Create spooky atmosphere",
+        "Plan award ceremony"
+      ],
+    "registe":"true"
+    }
+  ]

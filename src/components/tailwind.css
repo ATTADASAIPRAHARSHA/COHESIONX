@@ -1,0 +1,32 @@
+.date{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+  .rbc-off-range-bg{
+    opacity: 0.3;
+  }
+
+  .rbc-today{
+    opacity: 0.7;
+  }
+  .bgelectricblue{
+    background-color:#00FFFF;
+  }
+  .bglightblue{
+    background-color: #E9F1FA;
+  }
+  .bgbrightblue{
+    background-color: #00ABE4;
+  } 
+  .bgnavyblue{
+        background-color: #01257D 
+       }
+  .bgdarkblue{
+    background-color: #355070;
+  }
+  .headerblue{
+    background-color: #00b2ca;
+  }
+  
