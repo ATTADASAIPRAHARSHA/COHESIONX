@@ -23,6 +23,29 @@
     "registe":"true"
   },
   {
+    "id": 26,
+    "start": "2025-01-24T00:00:00",
+    "end": "2025-01-24T23:59:59",
+    "title": "Christmas Day",
+    "desc": "Celebrate the joy of Christmas with family and friends.",
+    "images": [
+      "https://example.com/images/christmas1.jpg",
+      "https://example.com/images/christmas2.jpg"
+    ],
+    "org": "Holiday Events Inc.",
+    "content": "Christmas is a time for giving, reflecting, and creating lasting memories with loved ones. Gather around the tree, exchange gifts, and enjoy festive meals.Christmas is a time for giving, reflecting, and creating lasting memories with loved ones. Gather around the tree, exchange gifts, and enjoy festive meals.Christmas is a time for giving, reflecting, and creating lasting memories with loved ones. Gather around the tree, exchange gifts, and enjoy festive meals.",
+    "points": [
+      "Exchange gifts with family and friends",
+      "Prepare and share traditional Christmas dinner",
+      "Decorate the Christmas tree and home",
+      "Attend Christmas church services",
+      "Sing Christmas carols and festive songs",
+      "Watch classic Christmas movies",
+      "Send Christmas cards and greetings"
+    ],
+    "registe":"true"
+  },
+  {
     "id": 2,
     "start": "2023-12-31T00:00:00",
     "end": "2023-12-31T23:59:59",
