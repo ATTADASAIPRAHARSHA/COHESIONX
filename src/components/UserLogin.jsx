@@ -43,6 +43,7 @@ function UserLogin() {
 
   return (<>
     <div className="w-full lg:w-1/2 p-16">
+      
       <h2 className="text-3xl font-bold mb-6">COHESIONX</h2>
       <h3 className="text-2xl font-semibold mb-8">Sign In to COHESIONX</h3>
       <form onSubmit={handleSubmit}>
