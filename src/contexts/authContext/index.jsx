@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../firebase';
+import events from '../../Events.json'
 
 const AuthContext = createContext();
 
@@ -76,7 +77,8 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-        setEvents(data);
+        // setEvents(data);
+        setEvents(events);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
