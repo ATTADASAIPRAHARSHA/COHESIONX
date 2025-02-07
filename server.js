@@ -84,11 +84,11 @@ app.post('/api-auth', async (req, res) => {
   }
 });
 
-app.get('/Events',async (req,res)=>{
+app.get('/events-get',async (req,res)=>{
   const result = await Eventscollection.find().toArray()
   res.json(result)
 })
-app.post('/Events',async(req,res)=>{
+app.post('/events-post',async(req,res)=>{
   const result = await Eventscollection.insertOne(req.body)
 
   res.status(400)

@@ -45,8 +45,9 @@ export function AuthProvider({ children }) {
 
     const fetchUserData = async (user) => {
       try {
+        console.log(`${import.meta.env.VITE_API_URL}`)
         const token = await user.getIdToken(); 
-        const response = await fetch('http://localhost:3000/api-auth', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -69,7 +70,8 @@ export function AuthProvider({ children }) {
     
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:3000/Events', {
+        console.log(`${import.meta.env.VITE_API_URL}`)
+        const response = await fetch(`${import.meta.env.VITE_API_URL}events-get`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

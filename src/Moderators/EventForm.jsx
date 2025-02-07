@@ -46,7 +46,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
         console.log("event submitted ")
         formData.id = Events.length+1;
         // console.log(Events.length())
-        const response = await fetch('http://localhost:3000/Events', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/events-post`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
