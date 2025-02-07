@@ -28,10 +28,10 @@ const CalendarComponent = () => {
     </span>
   );
 
-  const { CurrentUser, IsLoggedIn } = useAuth();
+  const { CurrentUser, IsLoggedIn , Events } = useAuth();
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const selectedEvents = events.filter(
+  const selectedEvents = Events.filter(
     (event) => new Date(event.start).toDateString() === selectedDate.toDateString()
   );
 
