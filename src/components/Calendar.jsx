@@ -13,8 +13,9 @@ import events from '../Events.json'
 //   { start: new Date('2023-12-31T00:00:00'), end: new Date('2023-12-31T23:59:59'), title: 'New Year\'s Eve' },
 //   { start: new Date('2024-12-06T00:00:00'), end: new Date('2024-12-06T23:59:59'), title: 'New Year\'s Eve' },
 // ];
+const { CurrentUser, IsLoggedIn , Events } = useAuth();
 
-events.forEach(event => {
+Events.forEach(event => {
   event.start = new Date(event.start);
   event.end = new Date(event.end);
 });
@@ -28,7 +29,6 @@ const CalendarComponent = () => {
     </span>
   );
 
-  const { CurrentUser, IsLoggedIn , Events } = useAuth();
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const selectedEvents = Events.filter(
@@ -73,7 +73,7 @@ const CalendarComponent = () => {
             <div className="w-full text-white backdrop-blur-sm">
               <Calendar
                 localizer={localizer}
-                events={events}
+                events={Events}
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 500 }}
