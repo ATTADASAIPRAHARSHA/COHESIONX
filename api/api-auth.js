@@ -37,11 +37,10 @@ export default async function handler(req, res) {
     }
     
     try {
-        
-    const {db} = await connectToDatabase();
-    const rolesCollection = db.collection('User');
-    const Eventscollection = db.collection('Events');
-
+      // Verify the Firebase ID token
+      const decodedToken = await admin.auth().verifyIdToken(token);
+      const email = decodedToken.email; 
+  
       const { data: user, error } = await supabase
         .from('users')
         .select('*')
