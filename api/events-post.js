@@ -39,7 +39,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
             const result = await Eventscollection.insertOne(req.body)
-            res.status(201)json({ message: 'Event created successfully'})
+            res.status(201).json({ message: 'Event created successfully'})
         } catch (error) {
           console.error('Error fetching events:', error);
           return res.status(500).json({ message: 'Error fetching events' });

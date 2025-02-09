@@ -3,6 +3,7 @@ import admin from 'firebase-admin';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { MongoClient } from 'mongodb';
+import { supabase } from './supaBaseclient.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -88,7 +89,23 @@ app.get('/events-get',async (req,res)=>{
   const result = await Eventscollection.find().toArray()
   res.json(result)
 })
+
 app.post('/events-post',async(req,res)=>{
+  const { data, error } = await supabase
+    .from('events') 
+    .insert(req.body);
+    if (error) {
+      console.error('Error fetching events:', error);
+    } else {
+      console.log('Events:', data);
+    }
+    console.log("supa base connected");
+    // const { daa, err } = await supabase.from('events').select('*');
+    if (err) {
+      console.error('Error fetching events:', err);
+    } else {
+      console.log('Events:', daa);
+    }
   const result = await Eventscollection.insertOne(req.body)
 
   res.status(400)

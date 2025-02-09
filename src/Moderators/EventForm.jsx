@@ -20,6 +20,12 @@ const EventForm = ({ ShowForm, setShowForm }) => {
         registelink:"", 
     });
 
+    const formatTimestamp = (datetime) => {
+        if (!datetime) return null; 
+        return new Date(datetime).toISOString().replace("T", " ").split(".")[0];
+    };
+    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevState) => ({
@@ -45,13 +51,21 @@ const EventForm = ({ ShowForm, setShowForm }) => {
         fetchEvents();
         console.log("event submitted ")
         formData.id = Events.length+1;
-        // console.log(Events.length())
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/events-post`, {
+        console.log(Events.length)
+
+        const formattedData = {
+            ...formData,
+            start: formatTimestamp(formData.start),
+            end: formatTimestamp(formData.end),
+            registestart: formatTimestamp(formData.registestart),
+            registeend: formatTimestamp(formData.registeend),
+        };
+        const response = await fetch(`${import.meta.env.VITE_API_URL}events-post`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(formattedData),
           });
         
     };

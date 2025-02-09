@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "6760363f8e8ec5663cf5bda4"
+  },
+  "role": "Admin",
+  "email": "9948619426saiharsha@gmail.com",
+  "org": "null",
+  "participated-events": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "ongoing-events": [
+    5,
+    6,
+    7
+  ],
+  "desc": "Computer science Engineer @ 2026 at VIIT"
+}]
