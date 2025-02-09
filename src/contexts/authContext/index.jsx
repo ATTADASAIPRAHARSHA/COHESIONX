@@ -57,11 +57,11 @@ export function AuthProvider({ children }) {
     
         const data = await response.json();
     
-        setuser(data.user);
-        setRole(data.user.role || null);
-        setOrg(data.user.org || null);
-        setParticipated(data.user["participated-events"] || []);
-        setOngoingEvents(data.user["ongoing-events"] || []);
+        // setuser(data.user);
+        // setRole(data.user.role || null);
+        // setOrg(data.user.org || null);
+        // setParticipated(data.user["participated-events"] || []);
+        // setOngoingEvents(data.user["ongoing-events"] || []);
         console.log("User data fetched:", data.user);
       } catch (error) {
         console.error('Error fetching user data:', error);
