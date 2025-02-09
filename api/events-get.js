@@ -1,9 +1,7 @@
-import express from 'express';
+// import express from 'express';
 import admin from 'firebase-admin';
 import dotenv from 'dotenv';
-import cors from 'cors';
-import { MongoClient } from 'mongodb';
-import connectToDatabase from '../../mongodb.js'
+// import cors from 'cors';
 
 // Load environment variables from .env file
 dotenv.config();
