@@ -42,21 +42,16 @@ export default async function handler(req, res) {
     const rolesCollection = db.collection('User');
     const Eventscollection = db.collection('Events');
 
-      const { data: users, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email); // Assuming you want to find the user by their email
-    
-    if (error) {
-      console.error('Error fetching user:', error.message);
-      return res.status(500).json({ message: 'Error fetching user', error: error.message });
-    }
-    
-    if (users && users.length > 0) {
-      return res.json({ message: 'User found', user: users[0] }); // Return the first matching user
-    } else {
-      return res.status(404).json({ message: 'User not found' });
-    }
+      const { data: user, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', email);
+      if (user && user.length>0) {
+        // console.log(user.org)
+        return res.json({ message: 'User found', user:user[0]  });
+      } else {
+        return res.status(404).json({ message: 'User not found' });
+      }
     } catch (error) {
       console.error(error);
       return res.status(400).json({ message: 'Invalid Firebase ID token' });

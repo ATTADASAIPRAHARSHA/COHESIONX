@@ -72,10 +72,13 @@ app.post('/api-auth', async (req, res) => {
     const decodedToken = await admin.auth().verifyIdToken(token);
     const email = decodedToken.email; 
 
-    const user = await rolesCollection.findOne({ email: email });
-    if (user) {
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email);
+    if (user && user.length>0) {
       // console.log(user.org)
-      return res.json({ message: 'User found', user:user  });
+      return res.json({ message: 'User found', user:user[0]  });
     } else {
       return res.status(404).json({ message: 'User not found' });
     }
