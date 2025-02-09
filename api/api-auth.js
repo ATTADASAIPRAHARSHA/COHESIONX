@@ -39,7 +39,7 @@ export default async function handler(req, res) {
       // Verify the Firebase ID token
       const decodedToken = await admin.auth().verifyIdToken(token);
       const email = decodedToken.email; 
-  
+      console.log(email)
       const { data: user, error } = await supabase
         .from('users')
         .select('*')
