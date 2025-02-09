@@ -62,7 +62,7 @@ export function AuthProvider({ children }) {
         // setOrg(data.user.org || null);
         // setParticipated(data.user["participated-events"] || []);
         // setOngoingEvents(data.user["ongoing-events"] || []);
-        console.log("User data fetched:", data.user);
+        console.log("User data fetched:", data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
