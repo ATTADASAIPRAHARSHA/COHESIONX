@@ -1,4 +1,4 @@
-import { supabase } from './supaBaseclient.js';
+import { supabase } from '../supaBaseclient.JS';
 import admin from 'firebase-admin';
 import dotenv from 'dotenv';
 

@@ -1,7 +1,7 @@
 // import express from 'express';
 import admin from 'firebase-admin';
 import dotenv from 'dotenv';
-import { supabase } from './supaBaseclient.js';
+import { supabase } from '../supaBaseclient.js';
 
 // Load environment variables from .env file
 dotenv.config();
