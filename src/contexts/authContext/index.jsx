@@ -47,6 +47,7 @@ export function AuthProvider({ children }) {
       try {
         console.log(`${import.meta.env.VITE_API_URL}`)
         const token = await user.getIdToken(); 
+        console.log(token)
         const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
           method: 'POST',
           headers: {
