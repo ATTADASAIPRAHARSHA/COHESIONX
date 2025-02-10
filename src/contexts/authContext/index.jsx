@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-        console.log(data+'hi')
+        console.log(data+'hi hi')
         // setEvents(data);
         setEvents(events);
       } catch (error) {
