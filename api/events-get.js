@@ -31,12 +31,8 @@ admin.initializeApp({
 
   
   export default async function handler(req, res) {
-    const{ db }= await connectToDatabase();
-    const rolesCollection = db.collection('User');
-    const Eventscollection = db.collection('Events');
     if (req.method === 'GET') {
         try {
-          const result = await Eventscollection.find().toArray();
           return res.status(200).json(result);
         } catch (error) {
           console.error('Error fetching events:', error);

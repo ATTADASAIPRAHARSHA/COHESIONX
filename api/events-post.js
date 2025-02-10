@@ -1,7 +1,6 @@
-import express from 'express';
+
 import admin from 'firebase-admin';
 import dotenv from 'dotenv';
-import connectToDatabase from '../../mongodb.js'
 
 // Load environment variables from .env file
 dotenv.config();
