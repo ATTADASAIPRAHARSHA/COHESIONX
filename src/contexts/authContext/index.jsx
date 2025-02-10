@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
 
     const fetchUserData = async (user) => {
       try {
-        console.log(`${import.meta.env.VITE_API_URL}`)
+        // console.log(`${import.meta.env.VITE_API_URL}`)
         const token = await user.getIdToken(); 
         const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
           method: 'POST',
@@ -70,7 +70,7 @@ export function AuthProvider({ children }) {
     
     const fetchEvents = async () => {
       try {
-        console.log(`${import.meta.env.VITE_API_URL}`)
+        console.log(`hi`)
         const response = await fetch(`${import.meta.env.VITE_API_URL}events-get`, {
           method: 'GET',
           headers: {
@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-        console.log(data)
+        console.log(data+'hi')
         // setEvents(data);
         setEvents(events);
       } catch (error) {
