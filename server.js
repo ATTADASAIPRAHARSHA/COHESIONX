@@ -89,8 +89,13 @@ app.post('/api-auth', async (req, res) => {
 });
 
 app.get('/events-get',async (req,res)=>{
-  const result = await Eventscollection.find().toArray()
-  res.json(result)
+  const { data, error } = await supabase.from('events').select('*');
+  if (error) {
+    console.error('Error fetching events:', error.message);
+} else {
+   
+    res.json(data);  // Sends the events data as JSON to the client
+}
 })
 
 app.post('/events-post',async(req,res)=>{
