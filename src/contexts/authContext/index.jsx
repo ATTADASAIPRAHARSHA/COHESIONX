@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-        console.log("events frtched :" + data)
+        console.log(data)
         setEvents(data);
         console.log('events assigning ended')
         // setEvents(events);
