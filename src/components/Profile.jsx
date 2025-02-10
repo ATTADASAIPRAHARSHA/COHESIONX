@@ -8,20 +8,20 @@ import Help from '../Dsiplaycomponents/Help';  // Assuming Help is defined somew
 import Suggeestions from '../Dsiplaycomponents/Suggeestions'; // Assuming Suggestions is defined somewhere
 
 const Profile = () => {
-  const { currentUser, IsLoggedIn, updateIsLoggedIn, user } = useAuth();
+  const { currentUser, IsLoggedIn, updateIsLoggedIn, user ,Role} = useAuth();
   const [Display, setDisplay] = useState('Profilepage');
 
   useEffect(() => {
     if (currentUser) {
       updateIsLoggedIn(true);
-      console.log(user);
+      // console.log(user);
     }
   }, [currentUser]);
 
   const handleDisplaySet = (e) => {
     setDisplay(e.target.value);
   };
-
+  console.log(user)
   return (
     <>
       <div className="pt-20 h-full">
@@ -36,7 +36,10 @@ const Profile = () => {
                   {currentUser.displayName}
                 </div>
                 <div className="flex mb-2">
-                  {currentUser.desc || user.desc}
+                {(currentUser?.desc || user?.desc) && (
+                  <div>{currentUser?.desc || user?.desc}</div>
+                )}
+
                 </div>
               </div>
               <div>

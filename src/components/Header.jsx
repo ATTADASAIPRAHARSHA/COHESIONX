@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/authContext';
 import { doSignOut } from '../../auth';
 
 const Header = () => {
-  const { currentUser, IsLoggedIn, updateIsLoggedIn ,Role } = useAuth();
+  const { currentUser, IsLoggedIn, updateIsLoggedIn ,Role,setRole } = useAuth();
   const navigate = useNavigate();
   const [Scrolled, setScrolled] = useState(false);
   const roundref = useRef();
@@ -35,8 +35,10 @@ const Header = () => {
 
   const handleLogout = () => {
     updateIsLoggedIn(false);
+    setRole('user')
     doSignOut();
   };
+  // console.log(Role)
 
   const handleProfileClick = () => {
     navigate('/authentication');
@@ -44,10 +46,8 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full fixed t-0 z-20 px-10 py-6  transition-opacity duration-300 ${
-        Scrolled ? 'opacity-80' : 'opacity-100'
-      } hover:opacity-100 ` }
-    >
+      className={`w-full fixed t-0 z-20 px-10 py-6  transition-opacity duration-300 ${Scrolled ? 'opacity-80' : 'opacity-100'
+      } hover:opacity-100 ` }>
       <nav ref={roundref}
       style={{ borderRadius: '10px' }}  className={`transition-all duration-1000 duration-800 shadow-gray-500  py-1 bgdarkblue`}>
         <div className="max-w-7xl mx-auto px-4">

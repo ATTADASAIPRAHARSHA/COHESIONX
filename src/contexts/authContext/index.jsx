@@ -45,9 +45,8 @@ export function AuthProvider({ children }) {
 
     const fetchUserData = async (user) => {
       try {
-        console.log(`${import.meta.env.VITE_API_URL}`)
+        // console.log(`${import.meta.env.VITE_API_URL}`)
         const token = await user.getIdToken(); 
-        console.log(token)
         const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
           method: 'POST',
           headers: {
@@ -55,18 +54,14 @@ export function AuthProvider({ children }) {
           },
           body: JSON.stringify({ token }),
         });
-
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
     
         const data = await response.json();
-        
+    
         setuser(data.user);
-        setRole(data.user.role || null);
-        setOrg(data.user.org || null);
-        setParticipated(data.user["participated-events"] || []);
-        setOngoingEvents(data.user["ongoing-events"] || []);
+        setRole(data.user?.role || '');
+        setOrg(data.user?.org || '');
+        setParticipated(data.user?.["participated-events"] || []);
+        setOngoingEvents(data.user?.["ongoing-events"] || []);
         console.log("User data fetched:", data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -75,7 +70,6 @@ export function AuthProvider({ children }) {
     
     const fetchEvents = async () => {
       try {
-        console.log(`Events fetching started`)
         const response = await fetch(`${import.meta.env.VITE_API_URL}events-get`, {
           method: 'GET',
           headers: {
@@ -84,10 +78,8 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-        console.log(data)
+        console.log("events fetched")
         setEvents(data);
-        console.log('events assigning ended')
-        // setEvents(events);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
