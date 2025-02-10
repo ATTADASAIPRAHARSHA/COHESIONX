@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
 
     const fetchUserData = async (user) => {
       try {
-        // console.log(`${import.meta.env.VITE_API_URL}`)
+        console.log(`${import.meta.env.VITE_API_URL}`)
         const token = await user.getIdToken(); 
         const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
           method: 'POST',
