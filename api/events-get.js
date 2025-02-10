@@ -33,7 +33,13 @@ admin.initializeApp({
   export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
-          return res.status(200).json({ message: 'fetching events' });
+          const { data, error } = await supabase.from('events').select('*');
+          if (error) {
+            console.error('Error fetching events:', error.message);
+        } else {
+           
+           return res.json(data);  // Sends the events data as JSON to the client
+        }
         } catch (error) {
           console.error('Error fetching events:', error);
           return res.status(500).json({ message: 'Error fetching events' });
