@@ -49,9 +49,9 @@ const EventForm = ({ ShowForm, setShowForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         fetchEvents();
-        console.log("event submitted ")
         formData.id = Events.length+1;
         console.log(Events.length)
+        console.log("event submitted ")
 
         const formattedData = {
             ...formData,
