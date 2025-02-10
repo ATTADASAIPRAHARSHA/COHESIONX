@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-    
+        
         setuser(data.user);
         setRole(data.user.role || null);
         setOrg(data.user.org || null);
@@ -70,7 +70,7 @@ export function AuthProvider({ children }) {
     
     const fetchEvents = async () => {
       try {
-        console.log(`hi`)
+        console.log(`Events fetching started`)
         const response = await fetch(`${import.meta.env.VITE_API_URL}events-get`, {
           method: 'GET',
           headers: {
@@ -79,10 +79,10 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-        console.log(data)
-        console.log('hi hi')
-        // setEvents(data);
-        setEvents(events);
+        console.log("events frtched :" + data)
+        setEvents(data);
+        console.log('events assigning ended')
+        // setEvents(events);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
