@@ -48,9 +48,7 @@ export default async function handler(req, res) {
       if (user && user.length>0) {
         // console.log(user.org)
         return res.json({ message: 'User found', user:user[0]  });
-      } else {
-        return res.status(404).json({ message: 'User not found' });
-      }
+      } 
     } catch (error) {
       console.error(error);
       return res.status(400).json({ message: 'Invalid Firebase ID token' });
