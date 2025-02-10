@@ -3,6 +3,7 @@ import admin from 'firebase-admin';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { MongoClient } from 'mongodb';
+import { supabase } from './supaBaseclient.js';
 
 // Load environment variables from .env file
 dotenv.config();
