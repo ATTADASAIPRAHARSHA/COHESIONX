@@ -30,14 +30,16 @@ admin.initializeApp({
 
 
 export default async function handler(req, res) {
-    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-    const{ db }= await connectToDatabase();
-    const rolesCollection = db.collection('User');
-    const Eventscollection = db.collection('Events');
     if (req.method === 'POST') {
         try {
-            const result = await Eventscollection.insertOne(req.body)
+          const { data, error } = await supabase
+          .from('events') 
+          .insert(req.body);
+          if (error) {
+            console.error('Error fetching events:', error);
+          } else {
+            console.log('Events:', data);
+          }
             res.status(201).json({ message: 'Event created successfully'})
         } catch (error) {
           console.error('Error fetching events:', error);
