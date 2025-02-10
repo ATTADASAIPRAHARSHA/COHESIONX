@@ -60,6 +60,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
             registestart: formatTimestamp(formData.registestart),
             registeend: formatTimestamp(formData.registeend),
         };
+        console.log(formattedData)
         const response = await fetch(`${import.meta.env.VITE_API_URL}events-post`, {
             method: 'POST',
             headers: {

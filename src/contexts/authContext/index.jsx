@@ -79,8 +79,9 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
-        setEvents(data);
-        // setEvents(events);
+        console.log(data)
+        // setEvents(data);
+        setEvents(events);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
