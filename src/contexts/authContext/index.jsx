@@ -55,6 +55,10 @@ export function AuthProvider({ children }) {
           },
           body: JSON.stringify({ token }),
         });
+
+        if (!response.ok) {
+          throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
     
         const data = await response.json();
         
