@@ -37,8 +37,7 @@ admin.initializeApp({
           if (error) {
             console.error('Error fetching events:', error.message);
         } else {
-           
-           return res.json(data);  // Sends the events data as JSON to the client
+           return res.json(data);  
         }
         } catch (error) {
           console.error('Error fetching events:', error);
