@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import { useAuth } from '../contexts/authContext';
-import { doSignInWithEmail ,doSignInWithGoogle } from '../../auth';
+import { doSignInWithEmail ,doSignInWithGoogle ,doCreateUserWithEmailAndPassword} from '../../auth';
 import Profile from './Profile';
 
 function UserLogin() {
@@ -24,7 +24,7 @@ function UserLogin() {
     if (!signingIn) {
       setSigningIn(true);
       try {
-        await doSignInWithEmail(email, password);
+        await doCreateUserWithEmailAndPassword(email, password);
         // setIsLoggedIn(true)
         console.log(currentUser)
       } catch (error) {

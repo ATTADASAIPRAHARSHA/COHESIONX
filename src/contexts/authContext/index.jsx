@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../firebase';
-import events from '../../Events.json'
 
 const AuthContext = createContext();
 
@@ -45,9 +44,7 @@ export function AuthProvider({ children }) {
 
     const fetchUserData = async (user) => {
       try {
-        const token = await user.getIdToken();
-        console.log("Token:", token);
-    
+        const token = await user.getIdToken(); 
         const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -71,10 +68,11 @@ export function AuthProvider({ children }) {
         console.log("User data fetched:", data);
     
         setuser(data.user);
-        setRole(data.user?.role || "");
-        setOrg(data.user?.org || "");
+        setRole(data.user?.role || '');
+        setOrg(data.user?.org || '');
         setParticipated(data.user?.["participated-events"] || []);
         setOngoingEvents(data.user?.["ongoing-events"] || []);
+        console.log("User data fetched:", data);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
       }
@@ -91,6 +89,8 @@ export function AuthProvider({ children }) {
         });
     
         const data = await response.json();
+        console.log("events fetched")
+        setEvents(data);
         console.log("events fetched")
         setEvents(data);
       } catch (error) {
