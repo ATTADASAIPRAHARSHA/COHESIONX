@@ -31,17 +31,14 @@ admin.initializeApp({
 export default async function handler(req, res) {
   
     const { token } = req.body;
-    console.log(token)
     if (!token) {
         return res.status(400).json({ message: 'Token is missing' });
     }
     
     try {
-      // Verify the Firebase ID token
-      console.log('hi')
       const decodedToken = await admin.auth().verifyIdToken(token);
       const email = decodedToken.email; 
-      
+
       const { data: user, error } = await supabase
         .from('users')
         .select('*')
