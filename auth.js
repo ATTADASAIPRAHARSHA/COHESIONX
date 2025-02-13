@@ -5,7 +5,7 @@ import { auth } from './firebase'; // Adjust the path if necessary
 // Function to sign in with email and password 
 export const doSignInWithEmail = async (email, password) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}login`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: 'user@example.com', password: 'password123' }),
@@ -19,7 +19,7 @@ export const doSignInWithEmail = async (email, password) => {
 }
 
 export const doCreateUserWithEmailAndPassword = async (email, password) => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}signup`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password}),
@@ -32,7 +32,7 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
 export const doSignInWithGoogle = async () => {
     console.log("hi")
     console.log(`${import.meta.env.VITE_API_URL}`)
-    const response = await fetch(`${import.meta.env.VITE_API_URL}google`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ provider : "google"}),
