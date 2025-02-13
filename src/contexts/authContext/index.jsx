@@ -45,34 +45,41 @@ export function AuthProvider({ children }) {
 
     const fetchUserData = async (user) => {
       try {
-        // console.log(`${import.meta.env.VITE_API_URL}`)
-        const token = await user.getIdToken(); 
-        console.log(token)
+        const token = await user.getIdToken();
+        console.log("Token:", token);
+    
         const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ token }),
         });
-        
-        // Log response before parsing JSON
-        const text = await response.text();
-        console.log("Raw response:", text);
-        
-        const data = JSON.parse(text);
-        
+    
+        // Check if response is OK
+        if (!response.ok) {
+          console.error("API Error:", response.status, response.statusText);
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    
+        // Check if response is valid JSON
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          const text = await response.text();
+          throw new Error(`Unexpected response format: ${text}`);
+        }
+    
+        const data = await response.json();
+        console.log("User data fetched:", data);
     
         setuser(data.user);
-        setRole(data.user?.role || '');
-        setOrg(data.user?.org || '');
+        setRole(data.user?.role || "");
+        setOrg(data.user?.org || "");
         setParticipated(data.user?.["participated-events"] || []);
         setOngoingEvents(data.user?.["ongoing-events"] || []);
-        console.log("User data fetched:", data);
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error.message);
       }
     };
+    
     
     const fetchEvents = async () => {
       try {
