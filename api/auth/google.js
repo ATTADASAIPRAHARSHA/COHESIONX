@@ -1,6 +1,6 @@
 import express from 'express';
 import admin from 'firebase-admin';
-import { supabase } from '../supaBaseclient.js';
+import { supabase } from '../../supaBaseclient.js';
 
 const router = express.Router();
 
