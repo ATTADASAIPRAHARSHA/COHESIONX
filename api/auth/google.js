@@ -4,7 +4,7 @@ import { supabase } from '../../supaBaseclient.js';
 
 const router = express.Router();
 
-export default async function handler (req, res)  {
+router.post('/google', async (req, res) => {
     const { provider} = req.body;
 
     if (provider !== "google") {
@@ -16,6 +16,6 @@ export default async function handler (req, res)  {
     if (error) return res.status(400).json({ error: error.message });
 
     return res.json({ message: "Redirect to Google login", url: data.url });
-  };
+  });
 
-// export default router;
+export default router;
