@@ -4,7 +4,7 @@ import { supabase } from '../supaBaseclient.js';
 
 const router = express.Router();
 
-router.post('/google', async (req, res) => {
+export default function handler(req, res){
     const { provider} = req.body;
 
     if (provider !== "google") {
