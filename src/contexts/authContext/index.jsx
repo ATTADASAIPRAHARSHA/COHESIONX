@@ -55,8 +55,13 @@ export function AuthProvider({ children }) {
           },
           body: JSON.stringify({ token }),
         });
-    
-        const data = await response.json();
+        
+        // Log response before parsing JSON
+        const text = await response.text();
+        console.log("Raw response:", text);
+        
+        const data = JSON.parse(text);
+        
     
         setuser(data.user);
         setRole(data.user?.role || '');
