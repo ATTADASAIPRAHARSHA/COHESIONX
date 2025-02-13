@@ -57,13 +57,11 @@ app.use('/api', (req, res, next) => {
 });
 
 // Import and use routes
-import authRoutes from './api/api-auth.js';
-import eventsGetRoutes from './api/events-get.js';
-import eventsPostRoutes from './api/events-post.js';
+import authRoutes from './api/login.js';
 
 app.use('/api', authRoutes);
-app.use('/api', eventsGetRoutes);
-app.use('/api', eventsPostRoutes);
+// app.use('/api', eventsGetRoutes);
+// app.use('/api', eventsPostRoutes);
 
 app.get('/admin-check', (req, res) => {
   res.send('Firebase Admin is initialized');
