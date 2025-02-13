@@ -5,7 +5,7 @@ import { auth } from './firebase'; // Adjust the path if necessary
 // Function to sign in with email and password 
 export const doSignInWithEmail = async (email, password) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}auth/login`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}api/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: 'user@example.com', password: 'password123' }),
