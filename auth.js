@@ -31,11 +31,13 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
 // Function to sign in with Google
 export const doSignInWithGoogle = async () => {
     console.log("hi")
+    console.log(`${import.meta.env.VITE_API_URL}`)
     const response = await fetch(`${import.meta.env.VITE_API_URL}google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ provider : "google"}),
       });
+
       const data = await response.json();
       if (data.url) {
         window.location.href = data.url; 
