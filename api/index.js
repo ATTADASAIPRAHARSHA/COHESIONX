@@ -1,14 +1,12 @@
 import express from 'express';
 import loginRoutes from './login.js';
 import googleRoutes from './google.js';
-import { createServerlessHandler } from '../../serverlessHandler.js'; // Helper function
 
 const app = express();
 app.use(express.json());
 
-// Mount routes
-app.use('/', loginRoutes);
-app.use('/', googleRoutes);
+app.use('/login', loginRoutes);
+app.use('/google', googleRoutes);
 
-// Export as a Vercel serverless function
+// Export the app correctly for Vercel serverless functions
 export default app;
