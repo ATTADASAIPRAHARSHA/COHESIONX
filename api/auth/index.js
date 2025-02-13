@@ -7,8 +7,8 @@ const app = express();
 app.use(express.json());
 
 // Mount routes
-app.use('/auth', loginRoutes);
-app.use('/auth', googleRoutes);
+app.use('/login', loginRoutes);
+app.use('/google', googleRoutes);
 
 // Export as a Vercel serverless function
 export default app;
