@@ -4,12 +4,15 @@ import { supabase } from '../../supaBaseclient.js';
 
 const router = express.Router();
 
-router.get('/getuser', async (req, res) => {
+router.post('/getuser', async (req, res) => {
 
-  const { data , error } = await supabase.auth.getUser();
+    const {email} = req.body;
 
-//   if (error) return res.status(400).json({ error: error.message });
-
+    const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("email", email);
+    if(error) return res.status(404).json({ message: "Error While fetching " });
     return res.json({ message: "Login successful", data });
 });
 
