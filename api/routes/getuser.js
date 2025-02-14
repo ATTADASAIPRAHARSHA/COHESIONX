@@ -5,7 +5,6 @@ import { supabase } from '../../supaBaseclient.js';
 const router = express.Router();
 
 router.get('/getuser', async (req, res) => {
-  const { email , password } = req.body;
 
   const { data , error } = await supabase.auth.getUser();
 
