@@ -40,8 +40,8 @@ export const doSignInWithGoogle = async () => {
 
       const data = await response.json();
       if (data.url) {
-        console.log(data.url)
-        // window.location.href = data.url; 
+        // console.log(data.url)
+        window.location.href = data.url; 
       } else {
         console.error("Google sign-in error:", data.error);
       }
