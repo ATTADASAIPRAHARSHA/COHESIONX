@@ -1,10 +1,15 @@
 import express from 'express';
 import admin from 'firebase-admin';
-import { supabase } from '../supaBaseclient.js';
+import { supabase } from '../../supaBaseclient.js';
 
 const router = express.Router();
 
-export default async function handler (req, res){
+
+router.get('/google', async (req, res) => {
+  res.send('working fine')
+});
+
+router.post('/google', async (req, res) => {
     const { provider} = req.body;
 
     if (provider !== "google") {
@@ -16,6 +21,6 @@ export default async function handler (req, res){
     if (error) return res.status(400).json({ error: error.message });
 
     return res.json({ message: "Redirect to Google login", url: data.url });
-  };
+  });
 
-// export default router;
+export default router;

@@ -1,8 +1,6 @@
 {
-    "rewrites": [
-      { "source": "/login", "destination": "/api/login" },
-      { "source": "/signup", "destination": "/api/signup" },
-      { "source": "/google", "destination": "/api/google" }
-    ]
-  }
-  
+  "version":2,
+  "rewrites":[
+      {"source":"/(.*)","destination":"/api"}
+  ]
+}
