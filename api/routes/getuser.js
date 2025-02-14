@@ -4,6 +4,11 @@ import { supabase } from '../../supaBaseclient.js';
 
 const router = express.Router();
 
+
+router.get('/getuser', async (req, res)=>{
+    res.send('hello')
+});
+
 router.post('/getuser', async (req, res) => {
 
     const {email} = req.body;
