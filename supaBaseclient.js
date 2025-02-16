@@ -7,7 +7,7 @@ let SUPABASE_URL, SUPABASE_ANON_KEY;
 
 if (isNode) {
     // Load dotenv dynamically
-    const dotenv = await import('dotenv');
+    const dotenv = import('dotenv');
     dotenv.config();
     
     SUPABASE_URL = process.env.VITE_SUPABASE_URL;
