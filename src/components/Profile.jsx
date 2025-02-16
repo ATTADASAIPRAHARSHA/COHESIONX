@@ -21,7 +21,6 @@ const Profile = () => {
   const handleDisplaySet = (e) => {
     setDisplay(e.target.value);
   };
-  console.log(user)
   return (
     <>
       <div className="pt-20 h-full">
@@ -29,7 +28,7 @@ const Profile = () => {
           <div className="mx-5 sm:mx-10 lg:mx-10 my-5 p-4 sm:p-6 md:p-10 lg:p-20">
             <div className="flex gap-4 flex-col sm:flex-row bglightblue p-5 items-center">
               <div className="image flex w-1/3 sm:w-1/5 p-4 sm:p-0 justify-center">
-                <img src={currentUser.photoURL} alt="profile img" className="w-1.5/4 h-full rounded-full" />
+                <img src={currentUser.user_metadata.avatar_url} alt="profile img" className="w-1.5/4 h-full rounded-full" />
               </div>
               <div className="personal flex flex-col text-left w-full justify-center sm:w-3/5 p-4">
                 <div className="flex mb-2 uppercase text-xl font-bold">

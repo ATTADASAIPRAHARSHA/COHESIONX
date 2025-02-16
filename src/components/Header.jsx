@@ -86,7 +86,7 @@ const Header = () => {
             {IsLoggedIn && currentUser ? (
               <div className="flex items-center space-x-4">
                 <button onClick={handleProfileClick} className="text-white rounded-full">
-                    <img className="w-14 h-14 rounded-full border-2 border-black" src={currentUser.photoURL} alt="" />
+                    <img className="w-14 h-14 rounded-full border-2 border-black" src={currentUser.user_metadata.avatar_url} alt="" />
                   {/* <div className="text-gray-800 hover:text-blue-600 px-3 py-2 w-14 h-14 font-medium border-2 rounded-full border-black">
                   </div> */}
                 </button>

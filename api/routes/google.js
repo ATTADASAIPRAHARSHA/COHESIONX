@@ -4,6 +4,9 @@ import { supabase } from '../../supaBaseclient.js';
 
 const router = express.Router();
 
+const app = express();
+
+
 
 router.get('/google', async (req, res) => {
   res.send('working fine')

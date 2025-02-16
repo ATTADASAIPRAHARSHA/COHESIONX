@@ -21,11 +21,11 @@ export function AuthProvider({ children }) {
   const [user, setuser] = useState({})
 
 
-    const handleAuthStateChange = async () => {
+    const handleAuthStateChange = async (session) => {
       setLoading(true);
       const user = session?.user || null; 
       setCurrentUser(user);
-
+      // console.log(user)
       if (user) {
         try {
           await fetchUserData(user); // Fetch user-related data
@@ -39,6 +39,18 @@ export function AuthProvider({ children }) {
 
       setLoading(false);
     };
+
+    useEffect(() => {
+      const { data: authListener } = supabase.auth.onAuthStateChange(
+        (event, session) => {
+          handleAuthStateChange(session);
+        }
+      );
+    
+      return () => {
+        authListener.subscription.unsubscribe(); // Cleanup on unmount
+      };
+    }, []);
 
     const fetchUserData = async (user) => {
       try {
@@ -57,14 +69,13 @@ export function AuthProvider({ children }) {
         }
     
         const data = await response.json();
-        console.log("User data fetched:", data);
+        console.log("User data fetched:", data.data[0]);
     
-        // setuser(data.user);
-        // setRole(data.user?.role || '');
-        // setOrg(data.user?.org || '');
-        // setParticipated(data.user?.["participated-events"] || []);
-        // setOngoingEvents(data.user?.["ongoing-events"] || []);
-        // console.log("User data fetched:", data);
+        setuser(data.data[0]);
+        setRole(data.data[0]?.role || '');
+        setOrg(data.data[0]?.org || '');
+        setParticipated(data.data[0]?.["participated-events"] || []);
+        setOngoingEvents(data.data[0]?.["ongoing-events"] || []);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
       }
@@ -73,7 +84,7 @@ export function AuthProvider({ children }) {
     
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}events-get`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/events-get`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
