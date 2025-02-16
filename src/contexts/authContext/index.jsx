@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../firebase';
+import { supabase } from '../../../supaBaseclient';
 
 const AuthContext = createContext();
 
@@ -21,58 +22,49 @@ export function AuthProvider({ children }) {
 
 
     const handleAuthStateChange = async () => {
-      const unsubscribe = onAuthStateChanged(auth, async (user) => {
-        setCurrentUser(user);
-        setLoading(true);
-    
-        if (user) {
-          try {
-            await fetchUserData(user); // Fetch user-related data
-            setIsLoggedIn(true);
-          } catch (error) {
-            console.error('Error fetching user data:', error);
-          }
-        } else {
-          setIsLoggedIn(false); // No user, set logged-out state
+      setLoading(true);
+      const user = session?.user || null; 
+      setCurrentUser(user);
+
+      if (user) {
+        try {
+          await fetchUserData(user); // Fetch user-related data
+          setIsLoggedIn(true);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
         }
-    
-        setLoading(false);
-      });
-    
-      return unsubscribe;
+      } else {
+        setIsLoggedIn(false);
+      }
+
+      setLoading(false);
     };
 
     const fetchUserData = async (user) => {
       try {
-        const token = await user.getIdToken(); 
-        const response = await fetch(`${import.meta.env.VITE_API_URL}api-auth`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token }),
-        });
-    
+        
+          const email = user?.email ;
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/getuser`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body : JSON.stringify({email})
+          });
+      
         // Check if response is OK
         if (!response.ok) {
           console.error("API Error:", response.status, response.statusText);
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
     
-        // Check if response is valid JSON
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          const text = await response.text();
-          throw new Error(`Unexpected response format: ${text}`);
-        }
-    
         const data = await response.json();
         console.log("User data fetched:", data);
     
-        setuser(data.user);
-        setRole(data.user?.role || '');
-        setOrg(data.user?.org || '');
-        setParticipated(data.user?.["participated-events"] || []);
-        setOngoingEvents(data.user?.["ongoing-events"] || []);
-        console.log("User data fetched:", data);
+        // setuser(data.user);
+        // setRole(data.user?.role || '');
+        // setOrg(data.user?.org || '');
+        // setParticipated(data.user?.["participated-events"] || []);
+        // setOngoingEvents(data.user?.["ongoing-events"] || []);
+        // console.log("User data fetched:", data);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
       }
