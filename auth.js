@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from './firebase'; // Adjust the path if necessary
 // import { useAuth } from './src/contexts/authContext';
+import { supabase } from './supaBaseclient.js';
 
 // Function to sign in with email and password 
 export const doSignInWithEmail = async (email, password) => {
@@ -49,10 +50,11 @@ export const doSignInWithGoogle = async () => {
 
 // Function to sign out
 export const doSignOut = async () => {
-    try {
-        await signOut(auth);
-    } catch (error) {
-        console.error("Error signing out: ", error);
-        throw error;
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+        console.error('Error signing out:', error.message);
+    } else {
+        console.log('User signed out successfully');
     }
 }

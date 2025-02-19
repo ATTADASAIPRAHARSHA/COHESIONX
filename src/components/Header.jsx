@@ -83,7 +83,7 @@ const Header = () => {
             </div>
 
             {/* User Profile or Sign Up */}
-            {IsLoggedIn && currentUser ? (
+            {IsLoggedIn ? (
               <div className="flex items-center space-x-4">
                 <button onClick={handleProfileClick} className="text-white rounded-full">
                     <img className="w-14 h-14 rounded-full border-2 border-black" src={currentUser.user_metadata.avatar_url} alt="" />
