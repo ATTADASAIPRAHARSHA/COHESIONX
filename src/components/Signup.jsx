@@ -31,7 +31,7 @@ const Signup = () => {
 
   return (
     <>
-      {IsLoggedIn ? (
+      {IsLoggedIn && currentUser ? (
         <Profile />
       ) : (
         <div className='pt-20 h-full'>
