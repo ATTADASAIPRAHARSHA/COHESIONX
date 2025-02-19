@@ -14,7 +14,7 @@ const Profile = () => {
   useEffect(() => {
     if (currentUser) {
       updateIsLoggedIn(true);
-      // console.log(user);
+      console.log(IsLoggedIn);
     }
   }, [currentUser]);
 
