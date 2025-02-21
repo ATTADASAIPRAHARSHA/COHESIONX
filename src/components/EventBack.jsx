@@ -7,7 +7,7 @@ const EventBack = () => {
             {/* Background Image */}
             <img
               src="./back.png"
-              className="absolute top-0 left-0 bottom-0 right-0 object-cover w-full h-full"
+              className="absolute top-0 left-0 bottom-0 right-0 object-cover w-full h-full opacity-70"
               alt="background"
             />
             <div className=" relative z-10 w-4/6 flex flex-col h-full justify-center items-left px-20 text-gray-100 ">

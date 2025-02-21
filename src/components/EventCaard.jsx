@@ -20,8 +20,7 @@ const EventCaard = ({ events }) => {
   <div className="right flex items-center p-4 date">
     <div className="text-center date text-lg">{startDate.toDateString()} - {endDate.toDateString()}</div>
   </div>
-  {/* Ensure absolute positioning works by adding 'absolute' class */}
-  {Role === 'moderator' && Org !== null && (
+  {(Role === 'moderator' || Role === 'admin') && Org !== null && (
     <div className="absolute top-5 right-5 flex gap-4 hidden group-hover:flex">
       <button>Edit</button>
       <button>Delete</button>

@@ -1,23 +1,52 @@
-import React from 'react'
+import React from 'react';
+import { useAuth } from '../contexts/authContext';
 
 const Profilepage = () => {
+  const { currentUser, user } = useAuth();
+
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-        <h2 className="text-2xl font-semibold text-center mb-4">User Profile</h2>
-        
-          <div>
-            <p className="text-lg font-medium text-gray-700">Name: </p>
-            <p className="text-lg font-medium text-gray-700">Email: </p>
-            <p className="text-lg font-medium text-gray-700">Role:</p>
-            <p className="text-lg font-medium text-gray-700">Account Created: </p>
+    <div className="flex flex-col justify-start items-center min-h-screen p-6">
+      <div>Details :</div>
+      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-3xl">
+        {/* Profile Details */}
+        <div className="text-lg space-y-4">
+          <div className="flex justify-between border-b pb-2">
+            <span className="text-gray-600">Email:</span>
+            <span className="font-medium">
+              {currentUser?.user_metadata?.email || "Not Provided"}
+            </span>
           </div>
-        
-          <p className="text-lg text-gray-700">Loading...</p>
-        
+          <div className="flex justify-between border-b pb-2">
+            <span className="text-gray-600">Role:</span>
+            <span className="font-medium">{user?.role || "Not Provided"}</span>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <span className="text-gray-600">Year:</span>
+            <span className="font-medium">{user?.year || "Not Provided"}</span>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <span className="text-gray-600">Branch:</span>
+            <span className="font-medium">{user?.branch || "Not Provided"}</span>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <span className="text-gray-600">Semester:</span>
+            <span className="font-medium">{user?.semester || "Not Provided"}</span>
+          </div>
+          <div className="flex justify-between border-b pb-2">
+            <span className="text-gray-600">Account Created:</span>
+            <span className="font-medium">{currentUser?.created_at || "N/A"}</span>
+          </div>
+        </div>
+
+        {/* Edit Profile Button */}
+        <div className="mt-6 text-center">
+          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600">
+            Edit Profile
+          </button>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profilepage
+export default Profilepage;

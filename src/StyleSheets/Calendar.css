@@ -29,7 +29,8 @@
 .rbc-background-event
 {
     z-index: 2;
-    background-color: rgba(52, 52, 160, 0.859);
+    background-color: white;
+    color: black;
 }
 *{
     background-repeat: none;

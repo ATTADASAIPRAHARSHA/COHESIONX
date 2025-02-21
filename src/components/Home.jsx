@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Home = () => {
   const navigate = useNavigate()
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen ">
       {/* Navigation Bar */}
       
 
@@ -22,24 +22,24 @@ const Home = () => {
       </div>
 
       {/* Features Section */}
-      <div className="py-16 bg-white">
+      <div className="py-16 bg-transparent">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-white">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
+            <div className="text-center p-6 border-2 border-white - rounded-xl">
               <div className="text-4xl mb-4">📅</div>
-              <h3 className="text-xl font-semibold mb-2">Event Tracking</h3>
-              <p className="text-gray-600">Keep track of all your events in one place</p>
+              <h3 className="text-xl font-semibold mb-2 text-white">Event Tracking</h3>
+              <p className="text-white">Keep track of all your events in one place</p>
             </div>
-            <div className="text-center p-6">
+            <div className="text-center p-6 border-2 border-white - rounded-xl">
               <div className="text-4xl mb-4">🔔</div>
-              <h3 className="text-xl font-semibold mb-2">Notifications</h3>
-              <p className="text-gray-600">Get reminders for upcoming events</p>
+              <h3 className="text-xl font-semibold mb-2 text-white">Notifications</h3>
+              <p className="text-white">Get reminders for upcoming events</p>
             </div>
-            <div className="text-center p-6">
+            <div className="text-center p-6 border-2 border-white - rounded-xl">
               <div className="text-4xl mb-4">📍</div>
-              <h3 className="text-xl font-semibold mb-2">Location Details</h3>
-              <p className="text-gray-600">Find event venues easily</p>
+              <h3 className="text-xl font-semibold mb-2 text-white">Location Details</h3>
+              <p className="text-white">Find event venues easily</p>
             </div>
           </div>
         </div>

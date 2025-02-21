@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/authContext';
 import { doSignOut } from '../../auth';
 
 const Header = () => {
-  const { currentUser, IsLoggedIn, updateIsLoggedIn ,Role,setRole } = useAuth();
+  const { currentUser, IsLoggedIn, updateIsLoggedIn, Role, setRole } = useAuth();
   const navigate = useNavigate();
   const [Scrolled, setScrolled] = useState(false);
   const roundref = useRef();
@@ -38,55 +38,51 @@ const Header = () => {
     setRole('user')
     doSignOut();
   };
-  // console.log(Role)
 
   const handleProfileClick = () => {
     navigate('/authentication');
   };
 
   return (
-    <div
-      className={`w-full fixed t-0 z-20 px-10 py-6  transition-opacity duration-300 ${Scrolled ? 'opacity-80' : 'opacity-100'
-      } hover:opacity-100 ` }>
+    <div className={`w-full fixed t-0 z-20 px-10  transition-opacity duration-300 ${Scrolled ? 'opacity-80' : 'opacity-100'
+        } hover:opacity-100 `}>
       <nav ref={roundref}
-      style={{ borderRadius: '10px' }}  className={`transition-all duration-1000 duration-800 shadow-gray-500  py-1 bgdarkblue`}>
-        <div className="max-w-7xl mx-auto px-4">
+        style={{ borderRadius: '10px' }} className={`transition-all duration-1000 duration-800 shadow-gray-500  py-3 `}>
+        <div className="max-w-7xl mx-auto ">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <img
-                className="h-12 w-auto rounded-full"
-                src="/title.png"
-                alt="Event Tracker Logo"
-              />
-            </div>
+            <div className='flex items-center gap-14'>
+              <div className="flex-shrink-0">
+                <img
+                  className="h-12 w-auto rounded-full"
+                  src="/title.png"
+                  alt="Event Tracker Logo"
+                />
+              </div>
 
-            {/* Navigation Links */}
-            <div className="flex space-x-8 text-xl">
-              <Link to="/" className="text-white hover:text-blue-600 px-3 py-2 font-medium">
-                Home
-              </Link>
-              <Link to="/event" className="text-white hover:text-blue-600 px-3 py-2 font-medium">
-                Events
-              </Link>
-              <Link to="/calendar" className="text-white hover:text-blue-600 px-3 py-2 font-medium">
-                Calendar
-              </Link>
-              { Role === "user" ?
-                <Link to="/contact" className="text-white hover:text-blue-600 px-3 py-2 font-medium">
-                  Contact
-                </Link> :
-                <Link to="/Manage" className="text-white hover:text-blue-600 px-3 py-2 font-medium">
-                  Manage
+              <div className="flex space-x-6 text-xl">
+                <Link to="/" className="text-white hover:text-blue-200 relative after:rounded-xl py-2 font-medium relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full outline-white">
+                  Home
                 </Link>
-              }
+                <Link to="/event" className="text-white hover:text-blue-200 relative relative after:rounded-xl after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full py-2 font-medium outline-white">
+                  Events
+                </Link>
+                <Link to="/calendar" className="text-white hover:text-blue-200 relative relative after:rounded-xl after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full py-2 font-medium outline-white">
+                  Calendar
+                </Link>
+                {Role === "admin" || Role === "moderator" ?
+                  <Link to="/Manage" className="text-white hover:text-blue-200 relative relative after:content-[''] after:rounded-xl after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full py-2 font-medium outline-white">
+                    Manage
+                  </Link> :
+                  <Link to="/contact" className="text-white hover:text-blue-200 relative relative after:rounded-xl after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full py-2 font-medium outline-white">
+                    Contact
+                  </Link> 
+                }
+              </div>
             </div>
-
-            {/* User Profile or Sign Up */}
             {IsLoggedIn ? (
               <div className="flex items-center space-x-4">
                 <button onClick={handleProfileClick} className="text-white rounded-full">
-                    <img className="w-14 h-14 rounded-full border-2 border-black" src={currentUser.user_metadata.avatar_url} alt="" />
+                  <img className="w-14 h-14 rounded-full border-2 border-black" src={currentUser.user_metadata.avatar_url} alt="" />
                   {/* <div className="text-gray-800 hover:text-blue-600 px-3 py-2 w-14 h-14 font-medium border-2 rounded-full border-black">
                   </div> */}
                 </button>
@@ -109,7 +105,7 @@ const Header = () => {
         </div>
       </nav>
     </div>
-  );
+  );  
 };
 
 export default Header;

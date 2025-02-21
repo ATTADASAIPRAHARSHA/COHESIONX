@@ -39,33 +39,33 @@ const Event = () => {
             <div className="blater options flex flex-col w-[20%] justify-center m-10 h-20">
               <button
                 onClick={() => handlecompleted()}
-                className={`${currentEvent === 'completed' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-black rounded-l-lg`}
+                className={`${currentEvent === 'completed' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white text-white`}
               >
                 Completed
               </button>
 
               <button
                 onClick={handleongoing}
-                className={`${currentEvent === 'ongoing' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-black`}
+                className={`${currentEvent === 'ongoing' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white text-white`}
               >
                 Ongoing
               </button>
 
               <button
                 onClick={handleupcoming}
-                className={`${currentEvent === 'upcoming' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-black rounded-r-lg`}
+                className={`${currentEvent === 'upcoming' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white text-white`}
               >
                 Upcoming
               </button>
 
             </div>
-            <div className='overflow-scroll w-[80%] my-5'>
+            <div className='overflow-scroll overflow-x-hidden w-[80%] my-5'>
               <EventsSearch />
               <div className="events ">
                 {DisplayedEvents.length > 0 ?
                   DisplayedEvents.map((eve, index) => {
                     return <EventCaard key={index} events={eve} />;
-                  }) : <div className='flex justify-center items-center m-4 p-4'>Sorry No Events</div>
+                  }) : <div className='flex justify-center items-center m-4 p-4 text-white'>Sorry No Events</div>
                 }
               </div>
             </div>

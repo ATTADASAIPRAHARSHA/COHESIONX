@@ -37,13 +37,13 @@ const CustomToolbar = ({ label, onNavigate, onView, view, date }) => {
   return (
     <div className="custom-toolbar flex justify-around items-center p-5  bg-black bg-opacity-10">
       <div className="directions flex gap-5">
-        <button onClick={goToBack} className='bg-gray-200 rounded-lg px-2'>
+        <button onClick={goToBack} className=' rounded-lg px-2'>
           <img src="./left.png" width={40} height={40} alt="Previous" />
         </button>
         <button onClick={goToToday} className='bg-blue-100 rounded-lg px-2'>
           <img src="./reset.png" width={30} height={30} alt="Reset" />
         </button>
-        <button onClick={goToNext} className='bg-gray-200 px-2 rounded-lg'>
+        <button onClick={goToNext} className=' px-2 rounded-lg'>
           <img src="./right.png" width={40} height={40} alt="Next" />
         </button>
       </div>

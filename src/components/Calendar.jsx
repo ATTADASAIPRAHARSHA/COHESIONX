@@ -6,6 +6,7 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../StyleSheets/Calendar.css';
 import Toolbar from './Toolbar';
+import Dashevent from '../Dsiplaycomponents/Dashevent';
 
 const localizer = momentLocalizer(moment);
 
@@ -43,8 +44,8 @@ const CalendarComponent = () => {
   }, []);
 
   const CustomEvent = ({ event }) => (
-    <span>
-      <strong>{event.title}</strong>
+    <span className="text-black">
+      <strong>{event.title} </strong>
       {event.desc && ` - ${event.desc}`}
     </span>
   );
@@ -52,7 +53,6 @@ const CalendarComponent = () => {
   return (
     <div
       style={{
-        backgroundImage: 'url(./calendarback.jpg)',
         height: isFullHeight ? '100%' : '120vh',
       }}
       className="w-full bg-cover bg-center pt-10"
@@ -72,7 +72,7 @@ const CalendarComponent = () => {
               events={processedEvents}
               startAccessor="start"
               endAccessor="end"
-              style={{ height: 500 }}
+              style={{ height: 500, color: 'white' }}
               onSelectSlot={({ start }) => {
                 setSelectedDate(start);
                 console.log(Views.DAY);
@@ -84,14 +84,13 @@ const CalendarComponent = () => {
               }}
             />
           </div>
-          <div className="selected-date-events text-white m-2 mt-6 text-left">
-            <h4 className="text-lg">Events on {selectedDate.toDateString()}</h4>
+          <div className="selected-date-events text-white m-2 mt-16 text-center">
+            <h4 className="text-xl my-2">Events on {selectedDate.toDateString()}</h4>
             <ul>
-              {selectedEvents.map((event, index) => (
-                <li key={index}>
-                  <div>{event.title}</div>
-                </li>
-              ))}
+              {selectedEvents.length > 0 ? <>
+                Events on : {`${selectedDate.toDateString()}`} <div className='rid grid-cols-4 gap-4'> {selectedEvents.map((event, index) => (
+                  <Dashevent events={event} />
+                ))}</div></> : <div> No  events on {`${selectedDate.toDateString()}`}</div>}
             </ul>
           </div>
         </div>
