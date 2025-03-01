@@ -13,6 +13,7 @@ import Calendar from './components/Calendar'
 import './components/tailwind.css'
 import IndiEvent from './components/IndiEvent'
 import Manage from './Moderators/Manage'
+import EventAddition from './Moderators/EventAddition'
 
 function App() {
   // const {currentUser } = useAuth()
@@ -43,8 +44,9 @@ function App() {
         <Route path="/contact" element={<Conatct />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/event" element={<Event />} />
-        <Route path="/Manage" element={<Manage />} />
+        <Route path="/manage" element={<Manage />} />
         <Route path="/:id" element={<IndiEvent />} />
+        <Route path="/addevent" element={<EventAddition />} />
       </Routes>
     </BrowserRouter>
     </AuthProvider>

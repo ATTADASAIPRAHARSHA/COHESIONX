@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <>
         <div className="w-ful h-full rounded-lg p-4">
-            <div className="header underline">YOUR DASHBOARD</div>
+            <div className="header underline text-white">YOUR DASHBOARD</div>
             <div className="eventsparticipated text-left flex flex-col mt-10 ">
               <span className="header bg-gray-100 m-0 px-4 py-3 rounded-t-xl w-80  text-xl h-auto underline">Previously participated</span>
               <div className="events bg-gray-100 rounded-tr-xl rounded-b-xl flex flex-wrap gap-4 p-10">

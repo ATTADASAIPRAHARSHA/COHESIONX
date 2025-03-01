@@ -48,26 +48,26 @@ function UserLogin() {
       <h3 className="text-2xl font-semibold mb-8">Sign In to COHESIONX</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
-          <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">YOUR email</label>
+          <label htmlFor="email" className="block text-white text-sm font-bold mb-2">YOUR email</label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
             required
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">PASSWORD</label>
+          <label htmlFor="password" className="block text-white text-sm font-bold mb-2">PASSWORD</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
             required
           />
         </div>
@@ -82,10 +82,10 @@ function UserLogin() {
         <p className="text-center mt-4">Or</p>
         <button
           type="button"
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-200 rounded w-full"
+          className=" text-white font-semibold py-2 px-4 "
           onClick={handlegoogle}
         >
-          Sign Up with Google
+          <span className='border border-gray-200 rounded w-full px-4 py-2 hover:text-red-300'>Sign Up with Google</span>
         </button>
       </form>
     </div>

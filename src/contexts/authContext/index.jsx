@@ -69,7 +69,7 @@ export function AuthProvider({ children }) {
         }
     
         const data = await response.json();
-        console.log("User data fetched:", data.data[0]);
+        // console.log("User data fetched:", data.data[0]);
     
         setuser(data.data[0]);
         setRole(data.data[0]?.role || '');
@@ -90,11 +90,9 @@ export function AuthProvider({ children }) {
             'Content-Type': 'application/json',
           },
         });
+        console.log("events fetched")
     
         const data = await response.json();
-        console.log("events fetched")
-        setEvents(data);
-        console.log("events fetched")
         setEvents(data);
       } catch (error) {
         console.error('Error fetching events:', error);

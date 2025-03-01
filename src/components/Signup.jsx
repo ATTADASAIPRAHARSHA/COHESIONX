@@ -34,8 +34,8 @@ const Signup = () => {
       {IsLoggedIn && currentUser ? (
         <Profile />
       ) : (
-        <div className='pt-20 h-full'>
-        <div className="flex flex-col lg:flex-row justify-around bg-gray-100 mt-10 ">
+        <div className='pt-20 h-full text-white'>
+        <div className="flex flex-col lg:flex-row justify-around mt-10">
           <div className="flex justify-center mt-2 w-full lg:w-1/2 relative z-10">
             <ImageComponent Image={image} />
 
@@ -43,11 +43,11 @@ const Signup = () => {
               {Object.keys(roleDetails).map((roleIndex) => (
                 <div
                   key={roleIndex}
-                  className={`p-5 w-full lg:w-1/2 text-center text-2xl font-semibold rounded-full transition-all duration-500 ${
+                  className={`p-5 w-full lg:w-1/2 text-center text-2xl font-semibold rounded-full transition-all duration-500 text-white ${
                     selectedRole == roleIndex ? 'bg-blue-500' : ''
                   }`}
                 >
-                  <button onClick={() => handleAuth(roleIndex)}>
+                  <button onClick={() => handleAuth(roleIndex)} className="text-white">
                     {roleDetails[roleIndex].name}
                   </button>
                 </div>

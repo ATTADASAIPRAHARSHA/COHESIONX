@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <div className={`w-full fixed t-0 z-20 px-10  transition-opacity duration-300 ${Scrolled ? 'opacity-80' : 'opacity-100'
-        } hover:opacity-100 `}>
+        } hover:opacity-100 bg-gradient-to-b from-black via-black/80 to-transparent`}>
       <nav ref={roundref}
         style={{ borderRadius: '10px' }} className={`transition-all duration-1000 duration-800 shadow-gray-500  py-3 `}>
         <div className="max-w-7xl mx-auto ">
@@ -70,7 +70,7 @@ const Header = () => {
                   Calendar
                 </Link>
                 {Role === "admin" || Role === "moderator" ?
-                  <Link to="/Manage" className="text-white hover:text-blue-200 relative relative after:content-[''] after:rounded-xl after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full py-2 font-medium outline-white">
+                  <Link to="/manage" className="text-white hover:text-blue-200 relative relative after:content-[''] after:rounded-xl after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full py-2 font-medium outline-white">
                     Manage
                   </Link> :
                   <Link to="/contact" className="text-white hover:text-blue-200 relative relative after:rounded-xl after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full py-2 font-medium outline-white">
@@ -83,8 +83,6 @@ const Header = () => {
               <div className="flex items-center space-x-4">
                 <button onClick={handleProfileClick} className="text-white rounded-full">
                   <img className="w-14 h-14 rounded-full border-2 border-black" src={currentUser.user_metadata.avatar_url} alt="" />
-                  {/* <div className="text-gray-800 hover:text-blue-600 px-3 py-2 w-14 h-14 font-medium border-2 rounded-full border-black">
-                  </div> */}
                 </button>
                 <button onClick={handleLogout} className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">
                   <div className="text-gray-800 hover:text-gray-100 px-3 py-2 font-bold">
@@ -94,8 +92,8 @@ const Header = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                <button className="bglightblue text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                  <Link to="/authentication" className="text-gray-800 hover:text-blue-600 px-3 py-2 font-medium font-bold">
+                <button className="bglightblue text-white px-4 py-2 transistion-all duartion-1000 rounded-md hover:bg-blue-700">
+                  <Link to="/authentication" className="text-gray-800 transistion-all duartion-1000 hover:text-white px-3 py-2 font-medium font-bold">
                     Sign Up
                   </Link>
                 </button>

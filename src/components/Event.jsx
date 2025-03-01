@@ -39,21 +39,21 @@ const Event = () => {
             <div className="blater options flex flex-col w-[20%] justify-center m-10 h-20">
               <button
                 onClick={() => handlecompleted()}
-                className={`${currentEvent === 'completed' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white text-white`}
+                className={`${currentEvent === 'completed' ? 'bg-gray-300 text-black' : 'text-white bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white `}
               >
                 Completed
               </button>
 
               <button
                 onClick={handleongoing}
-                className={`${currentEvent === 'ongoing' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white text-white`}
+                className={` ${currentEvent === 'ongoing' ? 'bg-gray-300 text-black' : 'bglightBlue text-white'} transition-all duration-950 border-2 p-2 text-xl border-white `}
               >
                 Ongoing
               </button>
 
               <button
                 onClick={handleupcoming}
-                className={`${currentEvent === 'upcoming' ? 'bg-gray-300' : 'bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white text-white`}
+                className={`${currentEvent === 'upcoming' ? 'bg-gray-300' : 'text-white bglightBlue'} transition-all duration-950 border-2 p-2 text-xl border-white `}
               >
                 Upcoming
               </button>
@@ -65,7 +65,7 @@ const Event = () => {
                 {DisplayedEvents.length > 0 ?
                   DisplayedEvents.map((eve, index) => {
                     return <EventCaard key={index} events={eve} />;
-                  }) : <div className='flex justify-center items-center m-4 p-4 text-white'>Sorry No Events</div>
+                  }) : <div className='flex justify-center items-center m-4 p-4 text-white'>Sorry No {`${currentEvent}`} Events</div>
                 }
               </div>
             </div>

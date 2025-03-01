@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import NotificationCard from './NotificationCard'
 import EventForm from './EventForm'
+import { useNavigate } from 'react-router-dom'
 const Manage = () => {
-
+    const navigate = useNavigate();
     const [ShowForm, setShowForm] = useState(false)
+
+    const handleaddevent = ()=>{
+        navigate('/addevent')
+    }
     return (
         <>
             <div className="h-28"></div>
@@ -26,12 +31,7 @@ const Manage = () => {
                 </div>
                 <div className="addevents mt-20">
                     <div className="info text-justify p-4 text-xl font-bold text-white">Moderators can easily add new events to the website by filling out details such as the event name, date, description, and uploading optional images. This ensures the events page stays updated with the latest activities. Once submitted, the events will be displayed for users to view and track.</div>
-                    <button onClick={() => {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        }), setShowForm(true)
-                    }} className='border-2 border-white text-black p-4 my-4 rounded-full transition-all duration-1000 bglightblue hover:bg-blue-500'>Add Events</button>
+                    <button onClick={() => handleaddevent()} className='border-2 border-white text-black p-4 my-4 rounded-full transition-all duration-1000 bglightblue hover:bg-blue-500'>Add Events</button>
                 </div>
             </div>
             <EventForm ShowForm={ShowForm} setShowForm={setShowForm} />
