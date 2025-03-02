@@ -24,11 +24,11 @@ const IndiEvent = () => {
     const end = IndiEvent.end ? new Date(IndiEvent.end) : null;
     
     return (<div className=' mx-40 h-full pt-40 '>
-        <div className="bg-blue-200 p-8 px-12 rounded">
+        <div className="bg-blue-200 p-8 px-12 rounded bg-opacity-70">
             <h1 className='text-3xl my-2'>{IndiEvent.title || 'No title available'}</h1>
             <p className='text-lg'>{IndiEvent.desc || 'No description available'}</p>
-            <div className="event-images h-96">
-                {/* {IndiEvent.images ? (
+            <div className="event-images h-96 text-center">
+                {IndiEvent.images ? (
                     IndiEvent.images.map((image, index) => {
                         console.log('Rendering image:', image);
                         return (
@@ -38,14 +38,14 @@ const IndiEvent = () => {
                                 alt={`Event ${IndiEvent.title} image ${index}`}
                                 onError={(e) => {
                                     console.error('Image failed to load:', image);
-                                    e.target.src = '/fallback-image.png'; // Add a fallback image
+                                    e.target.src = '/fallback-image.png'; 
                                 }}
                             />
                         );
                     })
                 ) : (
-                    <p>No images available</p>
-                )} */}
+                    <p className='flex justify-center items-center w-full h-full'>No images available</p>
+                )}
             </div>
             <div className='my-10 text-justify'><p>{IndiEvent.content}</p></div>
             <div className="points">

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
+import { isElement } from 'react-dom/test-utils';
+import { supabase } from '../../supaBaseclient';
 
 const EventAddition = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
 
   const navigate = useNavigate();
   const { Events, fetchEvents } = useAuth();
@@ -15,7 +14,7 @@ const EventAddition = () => {
     start: "",
     end: "",
     desc: "",
-    images: ["", ""],
+    images: [],
     org: "",
     content: "",
     points: [""],
@@ -24,6 +23,25 @@ const EventAddition = () => {
     registeend: "",
     registelink: "",
   });
+  useEffect(() => {
+    fetchEvents();
+    console.log(Events.length)
+    formData.id = Events.length + 1;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("formData");
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
+
 
   const formatTimestamp = (datetime) => {
     if (!datetime) return null;
@@ -47,11 +65,43 @@ const EventAddition = () => {
     }));
   };
 
-  const handleImagesChange = (e, index) => {
-    const newImages = [...formData.images];
-    newImages[index] = e.target.value;
-    setFormData({ ...formData, images: newImages });
+  const handleImagesChange = async (e) => {
+    const files = e.target.files;
+    if (!files.length) return;
+
+    const uploadPromises = Array.from(files).map(async (file, index) => {
+      const filePath = `uploads/${formData.id}-${index}.png`;
+
+      // Upload file to Supabase
+      const { data, error } = await supabase.storage.from("images").upload(filePath, file);
+
+      if (error) {
+        console.error("Upload Error:", error.message);
+        return null; // Skip failed uploads
+      }
+
+      // ✅ Get public URL using data returned from upload
+      const { data: name } = supabase.storage.from('images').getPublicUrl(filePath)
+
+      console.log(name.publicUrl)
+
+      return name.publicUrl;
+
+    });
+
+    // Wait for all uploads
+    const uploadedUrls = await Promise.all(uploadPromises);
+
+    // ✅ Filter out `null` values
+    const validUrls = uploadedUrls.filter((url) => url !== null);
+
+    console.log("Uploaded Images URLs:", validUrls);
+
+    // Update formData
+    setFormData({ ...formData, images: validUrls });
   };
+
+
 
   const handlePointsChange = (e, index) => {
     const newPoints = [...formData.points];
@@ -61,8 +111,7 @@ const EventAddition = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetchEvents();
-    formData.id = Events.length + 1;
+
     console.log(Events.length)
     console.log("event submitted ")
 
@@ -83,6 +132,38 @@ const EventAddition = () => {
     });
 
   };
+
+  const handleDeleteImage = async (imageUrl) => {
+    try {
+      // Extract the file path from the URL
+      console.log(imageUrl)
+      const filePath = imageUrl.split("/storage/v1/object/public/images/")[1];
+
+      if (!filePath) {
+        console.error("Invalid file path");
+        return;
+      }
+
+      // Delete the image from Supabase Storage
+      const { error } = await supabase.storage.from("images").remove([filePath]);
+
+      if (error) {
+        console.error("Storage Deletion Error:", error.message);
+        return;
+      }
+
+      console.log("Image deleted successfully from storage");
+
+      // Remove the image from formData state
+      setFormData((prev) => ({
+        ...prev,
+        images: prev.images.filter((img) => img !== imageUrl),
+      }));
+    } catch (err) {
+      console.error("Error deleting image:", err);
+    }
+  };
+
 
 
   const handlecreatebutton = () => {
@@ -114,7 +195,7 @@ const EventAddition = () => {
         </div>
 
       </div>
-      <div className='my-24 text-3xl '>Create. Share. Celebrate – Submit Your Event!</div>
+      <div className='my-24 text-3xl '><span className='bg-yellow-500 rounded-xl w-auto p-2 text-black '><span className='underline'>Create</span>.<span className='underline'> Share.</span> <span className='underline'>Celebrate</span> – <span className='underline'>Submit Your Event!</span></span></div>
       <div className='flex flex-col my-10 gap-10' id='eventform'>
         <div>Event form</div>
         <div className="form flex flex-col gap-y-10 mx-20">
@@ -190,18 +271,27 @@ const EventAddition = () => {
             <div className='flex flex-col text-left gap-2'>
               <div className='text-lg'>Capture the Moment: Add Engaging Event Images!</div>
               <div className=" relative text-left ">
-                {formData.images.map((image, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    name={`images-${index}`}
-                    value={image}
-                    onChange={(e) => handleImagesChange(e, index)}
-                    className="border p-2 w-full mb-2 bg-transparent border-b text-xl"
-                    placeholder={`Image URL ${index + 1}`}
-                  />
-                ))}
-                <button onClick={() => addPoint()}><img src="./gallery.png" className='w-[50px] h-[50px]' alt="" /> </button>
+                <input
+                  // key={index}
+                  type="file"
+                  multiple
+                  // name={`images-${index}`}
+                  // value={image}
+                  onChange={(e) => handleImagesChange(e)}
+                  className="border p-2 w-full mb-2 bg-transparent border-b text-xl"
+                // placeholder={`Image URL ${index + 1}`}
+                />
+
+              </div>
+              <div className='flex gap-4'>
+                {
+                  formData.images && formData.images.map((e, index) => (
+                    <div key={index} className='relative'>
+                      <img src={e} className='w-60 h-60' alt={`Uploaded ${index}`} />
+                      <button className='absolute top-0 right-0' onClick={() => handleDeleteImage(e)}>x</button>
+                    </div>
+                  ))
+                }
               </div>
 
             </div>
@@ -232,10 +322,10 @@ const EventAddition = () => {
             <div className='flex flex-col text-left gap-2'>
               <div className="text-center relative">
                 <textarea className=" w-full h-auto min-h-[200px] outline-none rounded-xl bg-transparent border border-white focus:border-white transition-all duration-300 p-4"
-                id="content"
-                name="content"
-                value={formData.content}
-                onChange={handleChange} placeholder='Extra Description' type="text" />
+                  id="content"
+                  name="content"
+                  value={formData.content}
+                  onChange={handleChange} placeholder='Extra Description' type="text" />
               </div>
               <div className='text-lg'>Add More Details: Include Any Extra Information!</div>
             </div>

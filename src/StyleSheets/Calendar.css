@@ -25,6 +25,10 @@
     background-color: #eff4f7;
 }
 
+.rbc-month-row{
+    height: auto;
+}
+
 .rbc-event ,
 .rbc-background-event
 {
