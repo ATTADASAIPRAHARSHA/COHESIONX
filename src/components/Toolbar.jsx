@@ -40,8 +40,9 @@ const CustomToolbar = ({ label, onNavigate, onView, view, date }) => {
         <button onClick={goToBack} className=' rounded-lg px-2'>
           <img src="./left.png" width={40} height={40} alt="Previous" />
         </button>
-        <button onClick={goToToday} className='bg-blue-100 rounded-lg px-2'>
-          <img src="./reset.png" width={30} height={30} alt="Reset" />
+        <button onClick={goToToday} className='border-2 border-white rounded-lg px-2'>
+          {/* <img src="./reset.png" width={30} height={30} alt="Reset" /> */}
+          Today
         </button>
         <button onClick={goToNext} className=' px-2 rounded-lg'>
           <img src="./right.png" width={40} height={40} alt="Next" />

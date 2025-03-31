@@ -28,8 +28,8 @@ const Dashboard = () => {
         <div className="w-ful h-full rounded-lg p-4">
             <div className="header underline text-white">YOUR DASHBOARD</div>
             <div className="eventsparticipated text-left flex flex-col mt-10 ">
-              <span className="header bg-gray-100 m-0 px-4 py-3 rounded-t-xl w-80  text-xl h-auto underline">Previously participated</span>
-              <div className="events bg-gray-100 rounded-tr-xl rounded-b-xl flex flex-wrap gap-4 p-10">
+              <span className="header bg-gray-400 m-0 px-4 py-3 rounded-t-xl w-80  text-xl h-auto underline">Previously participated</span>
+              <div className="events bg-gray-400 rounded-tr-xl rounded-b-xl flex flex-wrap gap-4 p-10">
               {ParticipatedEvents.length > 0 ? (
                   ParticipatedEvents.map(event => (
                     <div key={event.id}>
@@ -42,8 +42,8 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="eventsparticipated text-left flex flex-col mt-10 ">
-              <span className="header bg-gray-100 m-0 px-4 py-3 rounded-t-xl w-64 text-xl h-auto underline">Ongoing Events</span>
-              <div className="events bg-gray-100 rounded-tr-xl rounded-b-xl flex flex-wrap gap-4 p-10">
+              <span className="header bg-gray-300 m-0 px-4 py-3 rounded-t-xl w-64 text-xl h-auto underline">Ongoing Events</span>
+              <div className="events bg-gray-300 rounded-tr-xl rounded-b-xl flex flex-wrap gap-4 p-10">
               {Ongoing.length > 0 ? (
                   Ongoing.map(event => (
                     <div key={event.id}>

@@ -72,7 +72,7 @@ const CalendarComponent = () => {
               events={processedEvents}
               startAccessor="start"
               endAccessor="end"
-              style={{ height: 500, color: 'white' }}
+              style={{ height: 700, color: 'white' }}
               onSelectSlot={({ start }) => {
                 setSelectedDate(start);
                 console.log(Views.DAY);

@@ -8,6 +8,7 @@ const EventAddition = () => {
 
   const navigate = useNavigate();
   const { Events, fetchEvents } = useAuth();
+  const [imagefiles, setImagefiles] = useState([])
   const [formData, setFormData] = useState({
     id: "",
     title: "",
@@ -25,11 +26,20 @@ const EventAddition = () => {
   });
   useEffect(() => {
     fetchEvents();
-    console.log(Events.length)
-    formData.id = Events.length + 1;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log("events are here")
   }, []);
 
+  useEffect(() => {
+    console.log(Events.length)
+    if (Events.length > 0) {
+      setFormData((prev) => ({ ...prev, id: Events.length + 1 }));
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [Events]);
+
+  useEffect(() => {
+    console.log("Updated formData ID:", formData.id);
+  }, [formData.id]); 
 
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
@@ -68,37 +78,16 @@ const EventAddition = () => {
   const handleImagesChange = async (e) => {
     const files = e.target.files;
     if (!files.length) return;
+    setImagefiles(Array.from(files))
 
-    const uploadPromises = Array.from(files).map(async (file, index) => {
-      const filePath = `uploads/${formData.id}-${index}.png`;
 
-      // Upload file to Supabase
-      const { data, error } = await supabase.storage.from("images").upload(filePath, file);
-
-      if (error) {
-        console.error("Upload Error:", error.message);
-        return null; // Skip failed uploads
-      }
-
-      // ✅ Get public URL using data returned from upload
-      const { data: name } = supabase.storage.from('images').getPublicUrl(filePath)
-
-      console.log(name.publicUrl)
-
-      return name.publicUrl;
-
-    });
-
-    // Wait for all uploads
-    const uploadedUrls = await Promise.all(uploadPromises);
-
-    // ✅ Filter out `null` values
-    const validUrls = uploadedUrls.filter((url) => url !== null);
-
+    const validUrls = Array.from(files).map((file) => {
+      return URL.createObjectURL(file);
+    })
     console.log("Uploaded Images URLs:", validUrls);
 
-    // Update formData
     setFormData({ ...formData, images: validUrls });
+
   };
 
 
@@ -112,53 +101,109 @@ const EventAddition = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(Events.length)
-    console.log("event submitted ")
+    console.log(Events.length);
+    console.log("Event submitted");
 
-    const formattedData = {
-      ...formData,
-      start: formatTimestamp(formData.start),
-      end: formatTimestamp(formData.end),
-      registestart: formatTimestamp(formData.registestart),
-      registeend: formatTimestamp(formData.registeend),
-    };
-    console.log(formattedData)
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/events-post`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formattedData),
+    const uploadPromises = imagefiles.map(async (file, index) => {
+        if (!(file instanceof File)) {
+            console.error("Invalid file:", file);
+            return null;
+        }
+
+        const filePath = `uploads/${formData.id}-${index}.png`;
+
+        // Upload file to Supabase
+        const { data, error } = await supabase.storage
+            .from("images")
+            .upload(filePath, file);
+
+        if (error) {
+            console.error("Upload Error:", error.message);
+            return null;
+        }
+
+        // ✅ Fix: Correctly get the public URL
+        const { data: publicUrlData } = supabase.storage.from("images").getPublicUrl(filePath);
+
+        if (!publicUrlData || !publicUrlData.publicUrl) {
+            console.error("Failed to get public URL for:", filePath);
+            return null;
+        }
+
+        console.log("Uploaded Image URL:", publicUrlData.publicUrl);
+        return publicUrlData.publicUrl;
+
+        localStorage.setItem("formData", "");
     });
 
-  };
+    // Wait for all uploads to complete
+    const uploadedUrls = (await Promise.all(uploadPromises)).filter(url => url !== null);
+
+    console.log(uploadedUrls);
+
+    const formattedData = {
+        ...formData,
+        id: Events.length + 1,
+        images: uploadedUrls,
+        start: formatTimestamp(formData.start),
+        end: formatTimestamp(formData.end),
+        registestart: formatTimestamp(formData.registestart),
+        registeend: formatTimestamp(formData.registeend),
+    };
+
+    console.log("Formatted Data:", formattedData);
+
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/events-post`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formattedData),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        console.log("Server Response:", await response.json());
+    } catch (error) {
+        console.error("Fetch Error:", error);
+    }
+};
+
+
 
   const handleDeleteImage = async (imageUrl) => {
     try {
       // Extract the file path from the URL
       console.log(imageUrl)
-      const filePath = imageUrl.split("/storage/v1/object/public/images/")[1];
+      console.log(formData.images)
+      const imageurls = formData.images.filter((url) => url != imageUrl)
+      console.log(imageurls)
 
-      if (!filePath) {
-        console.error("Invalid file path");
-        return;
-      }
-
-      // Delete the image from Supabase Storage
-      const { error } = await supabase.storage.from("images").remove([filePath]);
-
-      if (error) {
-        console.error("Storage Deletion Error:", error.message);
-        return;
-      }
-
-      console.log("Image deleted successfully from storage");
-
-      // Remove the image from formData state
       setFormData((prev) => ({
         ...prev,
         images: prev.images.filter((img) => img !== imageUrl),
       }));
+
+      // if (!filePath) {
+      //   console.error("Invalid file path");
+      //   return;
+      // }
+
+      // Delete the image from Supabase Storage
+      // const { error } = await supabase.storage.from("images").remove([filePath]);
+
+      // if (error) {
+      //   console.error("Storage Deletion Error:", error.message);
+      //   return;
+      // }
+
+      // console.log("Image deleted successfully from storage");
+
+      // // Remove the image from formData state
+      // 
     } catch (err) {
       console.error("Error deleting image:", err);
     }

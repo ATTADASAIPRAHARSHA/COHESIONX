@@ -15,9 +15,11 @@ const Profile = () => {
   useEffect(() => {
     if (currentUser) {
       updateIsLoggedIn(true);
-      // console.log(IsLoggedIn);
     }
   }, [currentUser]);
+
+
+  
 
   const handleDisplaySet = (e) => {
     setDisplay(e.target.value);
@@ -27,9 +29,6 @@ const Profile = () => {
       <div className="pt-20 h-full">
         {IsLoggedIn && currentUser && (<>
           <div className="mx-5 sm:mx-10 lg:mx-10 my-5 p-4 sm:p-6 md:p-10 lg:p-20">
-            {user == null && (<div class="w-full bg-red-100 text-red-500 my-2 p-2">
-              Please complete your profile by clicking on Edit profile.
-            </div>)}
             <div className="flex gap-4 flex-col sm:flex-row bg-white bg-opacity-60 p-5 items-center">
               <div className="image flex w-1/3 sm:w-1/5 p-4 sm:p-0 justify-center">
                 <img src={currentUser.user_metadata.avatar_url} alt="profile img" className="w-1.5/4 h-full rounded-full" />

@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
       setLoading(true);
       const user = session?.user || null; 
       setCurrentUser(user);
-      // console.log(user)
+      console.log(user)
       if (user) {
         try {
           await fetchUserData(user); // Fetch user-related data
@@ -75,12 +75,11 @@ export function AuthProvider({ children }) {
         setRole(data.data[0]?.role || '');
         setOrg(data.data[0]?.org || '');
         setParticipated(data.data[0]?.["participated-events"] || []);
-        setOngoingEvents(data.data[0]?.["ongoing-events"] || []);
+        setOngoingEvents(data.data[0]?.["ongoing-events"] || []); 
       } catch (error) {
         console.error("Error fetching user data:", error.message);
       }
     };
-    
     
     const fetchEvents = async () => {
       try {

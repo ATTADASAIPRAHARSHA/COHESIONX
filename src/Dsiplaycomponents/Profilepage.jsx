@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/authContext';
 
 const Profilepage = () => {
   const { currentUser, user } = useAuth();
+  const [complete, setComplete] = useState(true)
+
+  useEffect(() => {
+  
+    const isComplete = user?.year && user?.branch && user?.semester && currentUser?.created_at;
+    setComplete(isComplete);
+    
+  }, [])
+  
 
   return (
     <div className="flex flex-col justify-start items-center min-h-screen p-6">
-      <div>Details :</div>
+      {!complete && (<div class="w-full bg-red-100 text-red-500 my-2 p-2">
+              Please complete your profile by clicking on Edit profile.
+      </div>)}
       <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-3xl">
         {/* Profile Details */}
         <div className="text-lg space-y-4">
