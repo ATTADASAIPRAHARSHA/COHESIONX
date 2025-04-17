@@ -7,10 +7,11 @@ import VIIT from '../Dsiplaycomponents/VIIT';
 import Help from '../Dsiplaycomponents/Help';  
 import Edit from '../Dsiplaycomponents/Edit.jsx';
 import Suggeestions from '../Dsiplaycomponents/Suggeestions'; // Assuming Suggestions is defined somewhere
+import ProfileComp from './ProfileComp.jsx';
 
 const Profile = () => {
   const { currentUser, IsLoggedIn, updateIsLoggedIn, user, Role } = useAuth();
-  const [Display, setDisplay] = useState('Profilepage');
+  const [Display, setDisplay] = useState('Dashboard');
 
   useEffect(() => {
     if (currentUser) {
@@ -50,16 +51,7 @@ const Profile = () => {
             </div>
             <div className="flex flex-wrap sm:flex-nowrap mt-4 gap-5">
               {/* Sidebar options */}
-              <div className="options bg-white bg-opacity-60 py-4 pl-4 w-full sm:w-1/4 lg:w-1/5 rounded-lg">
-                <div className={`p-2 ${Display === 'Profilepage' ? 'bg-gray-300 rounded-l-full' : ''}`}>
-                  <button
-                    onClick={handleDisplaySet}
-                    value="Profilepage"
-                    className="w-full sm:w-auto"
-                  >
-                    Profile
-                  </button>
-                </div>
+              <div className="options bg-white bg-opacity-60 py-4 pl-4 h-full w-full sm:w-1/4 lg:w-1/5 rounded-lg">
                 <div className={`p-2 ${Display === 'Dashboard' ? 'bg-gray-300 rounded-l-full' : ''}`}>
                   <button
                     onClick={handleDisplaySet}
@@ -67,6 +59,15 @@ const Profile = () => {
                     className="w-full sm:w-auto"
                   >
                     Dashboard
+                  </button>
+                </div>
+                <div className={`p-2 ${Display === 'Profilepage' ? 'bg-gray-300 rounded-l-full' : ''}`}>
+                  <button
+                    onClick={handleDisplaySet}
+                    value="Profilepage"
+                    className="w-full sm:w-auto"
+                  >
+                    Profile
                   </button>
                 </div>
                 <div className={`p-2 ${Display === 'Help' ? 'bg-gray-300 rounded-l-full' : ''}`}>
@@ -100,11 +101,15 @@ const Profile = () => {
 
               {/* Display selected component */}
               <div className="display w-full sm:w-3/4 lg:w-4/5 mt-4 sm:mt-0">
-                {Display === 'Profilepage' ? (
-                  <Profilepage />
-                ) : Display === 'Dashboard' ? (
-                  <Dashboard />
-                ) : Display === 'Settings' ? (
+                {
+                  Display === 'Dashboard' ? (
+                    <Dashboard />
+                  )
+                  : 
+                  Display === 'Profilepage' ? (
+                    <ProfileComp />
+                  )
+                 : Display === 'Settings' ? (
                   <Settings />
                 ) : Display === 'Help' ? (
                   <Help />
@@ -128,3 +133,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+
+

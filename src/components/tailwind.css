@@ -36,3 +36,31 @@ html{
   }
   
 
+  .fromleft{
+    animation-name: fromleft ;
+    animation-timeline: view(40% auto);
+  }
+  @keyframes fromleft {
+    from{
+      opacity: 0.2;
+      transform: translateX(-40px);
+    }
+    to{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .fromright{
+    animation-name: fromright ;
+    animation-timeline: view(40% auto);
+  }
+  @keyframes fromright {
+    from{
+      opacity: 0.2;
+      transform: translateX(40px);
+    }
+    to{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }

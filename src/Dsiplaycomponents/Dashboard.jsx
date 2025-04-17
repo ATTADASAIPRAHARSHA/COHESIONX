@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/authContext'
 import Dashevent from './Dashevent'
+import EventStatsCard from '../components/EventsStatcard.jsx'
 
 
 const Dashboard = () => {
@@ -25,8 +26,9 @@ const Dashboard = () => {
   
   return (
     <>
+        <div className="header underline text-white">YOUR DASHBOARD</div>
+        <EventStatsCard/>
         <div className="w-ful h-full rounded-lg p-4">
-            <div className="header underline text-white">YOUR DASHBOARD</div>
             <div className="eventsparticipated text-left flex flex-col mt-10 ">
               <span className="header bg-gray-400 m-0 px-4 py-3 rounded-t-xl w-80  text-xl h-auto underline">Previously participated</span>
               <div className="events bg-gray-400 rounded-tr-xl rounded-b-xl flex flex-wrap gap-4 p-10">

@@ -3,7 +3,8 @@ import { useAuth } from '../contexts/authContext';
 
 const Profilepage = () => {
   const { currentUser, user } = useAuth();
-  const [complete, setComplete] = useState(true)
+  const [complete, setComplete] = useState(true);
+  const [displayForm, setDisplayForm] = useState(false)
 
   useEffect(() => {
   
@@ -12,6 +13,9 @@ const Profilepage = () => {
     
   }, [])
   
+  const handleedit = ()=>{
+
+  }
 
   return (
     <div className="flex flex-col justify-start items-center min-h-screen p-6">
@@ -51,10 +55,12 @@ const Profilepage = () => {
 
         {/* Edit Profile Button */}
         <div className="mt-6 text-center">
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600">
+          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600" onClick={handleedit}>
             Edit Profile
           </button>
         </div>
+
+        
       </div>
     </div>
   );
