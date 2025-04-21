@@ -9,6 +9,7 @@ const Profilepage = () => {
   useEffect(() => {
   
     const isComplete = user?.year && user?.branch && user?.semester && currentUser?.created_at;
+    console.log(currentUser)
     setComplete(isComplete);
     
   }, [])

@@ -14,6 +14,7 @@ import './components/tailwind.css'
 import IndiEvent from './components/IndiEvent'
 import Manage from './Moderators/Manage'
 import EventAddition from './Moderators/EventAddition'
+import Footer from './components/Footer'
 
 function App() {
   // const {currentUser } = useAuth()
@@ -48,6 +49,7 @@ function App() {
         <Route path="/:id" element={<IndiEvent />} />
         <Route path="/addevent" element={<EventAddition />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
     </AuthProvider>
     </>

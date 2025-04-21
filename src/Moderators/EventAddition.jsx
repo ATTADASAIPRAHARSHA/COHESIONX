@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
-import { isElement } from 'react-dom/test-utils';
 import { supabase } from '../../supaBaseclient';
 
 const EventAddition = () => {
@@ -23,11 +22,63 @@ const EventAddition = () => {
     registestart: "",
     registeend: "",
     registelink: "",
+    venue: "",           // Add this field
+    perks: "",           // Add this field
+    rules: "",           // Add this field
+    organizerContact: "",// Add this field
+    eligibleYear: [],
+    eligibleBranch: [''],
   });
   useEffect(() => {
     fetchEvents();
     console.log("events are here")
   }, []);
+
+  const handleBranchCheckbox = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setFormData((prev) => ({
+        ...prev,
+        eligibleBranch: [...prev.eligibleBranch, value],
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        eligibleBranch: prev.eligibleBranch.filter((branch) => branch !== value),
+      }));
+    }
+  };
+
+
+
+
+  const handleEligibleYearChange = (e, index) => {
+    const updatedEligibleYears = [...formData.eligibleYear];
+    updatedEligibleYears[index] = e.target.value;
+    setFormData((prevState) => ({
+      ...prevState,
+      eligibleYear: updatedEligibleYears,
+    }));
+  };
+
+  // Add new empty input field for eligibleYear
+  const addEligibleYear = () => {
+    setFormData((prevState) => ({
+      ...prevState,
+      eligibleYear: [...prevState.eligibleYear, ""],
+    }));
+  };
+
+  // Delete a specific eligible year
+  const deleteEligibleYear = (index) => {
+    const updatedEligibleYears = formData.eligibleYear.filter((_, i) => i !== index);
+    setFormData((prevState) => ({
+      ...prevState,
+      eligibleYear: updatedEligibleYears,
+    }));
+  };
+
+
 
   useEffect(() => {
     console.log(Events.length)
@@ -39,7 +90,7 @@ const EventAddition = () => {
 
   useEffect(() => {
     console.log("Updated formData ID:", formData.id);
-  }, [formData.id]); 
+  }, [formData.id]);
 
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
@@ -105,35 +156,35 @@ const EventAddition = () => {
     console.log("Event submitted");
 
     const uploadPromises = imagefiles.map(async (file, index) => {
-        if (!(file instanceof File)) {
-            console.error("Invalid file:", file);
-            return null;
-        }
+      if (!(file instanceof File)) {
+        console.error("Invalid file:", file);
+        return null;
+      }
 
-        const filePath = `uploads/${formData.id}-${index}.png`;
+      const filePath = `uploads/${formData.id}-${index}.png`;
 
-        // Upload file to Supabase
-        const { data, error } = await supabase.storage
-            .from("images")
-            .upload(filePath, file);
+      // Upload file to Supabase
+      const { data, error } = await supabase.storage
+        .from("images")
+        .upload(filePath, file);
 
-        if (error) {
-            console.error("Upload Error:", error.message);
-            return null;
-        }
+      if (error) {
+        console.error("Upload Error:", error.message);
+        return null;
+      }
 
-        // ✅ Fix: Correctly get the public URL
-        const { data: publicUrlData } = supabase.storage.from("images").getPublicUrl(filePath);
+      // ✅ Fix: Correctly get the public URL
+      const { data: publicUrlData } = supabase.storage.from("images").getPublicUrl(filePath);
 
-        if (!publicUrlData || !publicUrlData.publicUrl) {
-            console.error("Failed to get public URL for:", filePath);
-            return null;
-        }
+      if (!publicUrlData || !publicUrlData.publicUrl) {
+        console.error("Failed to get public URL for:", filePath);
+        return null;
+      }
 
-        console.log("Uploaded Image URL:", publicUrlData.publicUrl);
-        return publicUrlData.publicUrl;
+      console.log("Uploaded Image URL:", publicUrlData.publicUrl);
+      return publicUrlData.publicUrl;
 
-        localStorage.setItem("formData", "");
+      localStorage.setItem("formData", "");
     });
 
     // Wait for all uploads to complete
@@ -142,35 +193,41 @@ const EventAddition = () => {
     console.log(uploadedUrls);
 
     const formattedData = {
-        ...formData,
-        id: Events.length + 1,
-        images: uploadedUrls,
-        start: formatTimestamp(formData.start),
-        end: formatTimestamp(formData.end),
-        registestart: formatTimestamp(formData.registestart),
-        registeend: formatTimestamp(formData.registeend),
+      ...formData,
+      id: Events.length + 1,
+      images: uploadedUrls,
+      start: formatTimestamp(formData.start),
+      end: formatTimestamp(formData.end),
+      registestart: formatTimestamp(formData.registestart),
+      registeend: formatTimestamp(formData.registeend),
+      venue: formData.venue,                // Include this
+      perks: formData.perks,                // Include this
+      rules: formData.rules,                // Include this
+      organizerContact: formData.organizerContact, // Include this
+      eligibleYear: formData.eligibleYear.map(year => parseInt(year)),
+      eligibleBranch: formData.eligibleBranch,
     };
 
     console.log("Formatted Data:", formattedData);
 
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/events-post`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formattedData),
-        });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/events-post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formattedData),
+      });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
-        console.log("Server Response:", await response.json());
+      console.log("Server Response:", await response.json());
     } catch (error) {
-        console.error("Fetch Error:", error);
+      console.error("Fetch Error:", error);
     }
-};
+  };
 
 
 
@@ -363,6 +420,131 @@ const EventAddition = () => {
             </div>
 
           </div>
+          <div className="grid items-center mx-10 p-2 gap-20">
+            <div className='flex flex-col text-left gap-2'>
+              <div className="relative text-left">
+                <input
+                  className="outline-none bg-transparent border-b border-white focus:border-white transition-all duration-300 text-white 
+        [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:brightness-200"
+                  id="venue"
+                  name="venue"
+                  value={formData.venue}
+                  onChange={handleChange}
+                  type="text"
+                />
+              </div>
+              <div className='text-lg'>Enter Venue:</div>
+            </div>
+          </div>
+
+          <div className="grid items-center mx-10 p-2 gap-20 ">
+            <div className='flex flex-col text-left gap-2'>
+              <div className="relative text-left">
+                <textarea
+                  className="outline-none bg-transparent border-b border-white focus:border-white transition-all duration-300 w-full border border-white rounded-lg p-6 text-white"
+                  id="perks"
+                  name="perks"
+                  value={formData.perks}
+                  onChange={handleChange}
+                  rows="4"
+                  placeholder="Enter Perks and Benefits"
+                />
+              </div>
+              <div className='text-lg'>Enter Perks and Benefits:</div>
+            </div>
+          </div>
+
+          <div className="grid items-center mx-10 p-2 gap-20">
+            <div className='flex flex-col text-left gap-2'>
+              <div className="relative text-left">
+                <textarea
+                  className="outline-none bg-transparent border-b border-white focus:border-white transition-all duration-300 text-white w-full border border-white rounded-lg p-6"
+                  id="rules"
+                  name="rules"
+                  value={formData.rules}
+                  onChange={handleChange}
+                  rows="4"
+                  placeholder="Enter Rules and Regulations"
+                />
+              </div>
+              <div className='text-lg'>Enter Rules and Regulations:</div>
+            </div>
+          </div>
+
+          <div className="grid items-center mx-10 p-2 gap-20">
+            <div className='flex flex-col text-left gap-2'>
+              <div className="relative text-left">
+                <input
+                  className="outline-none bg-transparent border-b border-white focus:border-white transition-all duration-300 text-white w-full"
+                  id="organizer-contact"
+                  name="organizerContact"
+                  value={formData.organizerContact}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Enter Organizer Contact Details"
+                />
+              </div>
+              <div className='text-lg'>Enter Organizer Contact Details:</div>
+            </div>
+          </div>
+
+          <div className="grid items-center mx-10 my-8 p-2 gap-20">
+            <div className="flex flex-col text-left gap-2">
+              <div className="text-lg">Eligible Years: Add the years that are eligible for this event</div>
+
+              {/* Check if eligibleYear has any years */}
+              {formData.eligibleYear.length > 0 ? (
+                formData.eligibleYear.map((year, index) => (
+                  <div key={index} className="flex p-2 items-center gap-2 ">
+                    <input
+                      type="number"
+                      name={`eligibleYear-${index}`}
+                      value={year}
+                      onChange={(e) => handleEligibleYearChange(e, index)}
+                      className="border p-2 bg-transparent border-b text-xl"
+                      placeholder={`Year ${index + 1}`}
+                    />
+                    <button
+                      onClick={() => deleteEligibleYear(index)}
+                      className="text-red-600 "
+                    >
+                      x
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div className='text-xl text-red-600'>No eligible years added yet. Click "Add Year" to start.</div> // You can show a message when it's empty
+              )}
+
+              <button onClick={addEligibleYear} className="text-blue-500 text-3xl underline">
+                Add Year
+              </button>
+            </div>
+          </div>
+          <div className="grid items-center mx-10 p-2 gap-20">
+            <div className="flex flex-col text-left gap-2">
+              <div className="text-lg">Select Eligible Branches of Students:</div>
+
+              <div className="grid grid-cols-2 gap-2 text-white">
+                {["CSE", "ECE", "EEE", "IT", "MECH", "CIVIL", "AIML", "DS"].map((branch) => (
+                  <label key={branch} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      value={branch}
+                      checked={formData.eligibleBranch.includes(branch)}
+                      onChange={(e) => handleBranchCheckbox(e)}
+                      className="accent-blue-500"
+                    />
+                    {branch}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+
+
+
           <div className="grid  items-center mx-10 p-2 gap-20">
             <div className='flex flex-col text-left gap-2'>
               <div className="text-center relative">

@@ -11,7 +11,7 @@ import ProfileComp from './ProfileComp.jsx';
 
 const Profile = () => {
   const { currentUser, IsLoggedIn, updateIsLoggedIn, user, Role } = useAuth();
-  const [Display, setDisplay] = useState('Dashboard');
+  const [Display, setDisplay] = useState('Profilepage');
 
   useEffect(() => {
     if (currentUser) {

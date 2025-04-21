@@ -3,25 +3,29 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
 
 const EventForm = ({ ShowForm, setShowForm }) => {
-    const {Events , fetchEvents} = useAuth();
+    const { Events, fetchEvents } = useAuth();
     const [formData, setFormData] = useState({
-        id:"",
+        id: "",
         title: "",
         start: "",
         end: "",
         desc: "",
-        images: ["", ""], 
+        images: ["", ""],
         org: "",
         content: "",
-        points: ["", "", "", "", "", "", ""], 
+        points: ["", "", "", "", "", "", ""],
         registe: false,
-        registestart:"", 
-        registeend:"", 
-        registelink:"", 
+        registestart: "",
+        registeend: "",
+        registelink: "",
+        venue: "",                // New field for venue
+        rules: "",                // New field for rules and regulations
+        contact: "",              // New field for organizer's contact details
+        perks: "",                // New field for perks and benefits
     });
 
     const formatTimestamp = (datetime) => {
-        if (!datetime) return null; 
+        if (!datetime) return null;
         const date = new Date(datetime);
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -29,10 +33,9 @@ const EventForm = ({ ShowForm, setShowForm }) => {
         const hours = String(date.getHours()).padStart(2, "0");
         const minutes = String(date.getMinutes()).padStart(2, "0");
         const seconds = String(date.getSeconds()).padStart(2, "0");
-    
+
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
-    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -57,9 +60,9 @@ const EventForm = ({ ShowForm, setShowForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         fetchEvents();
-        formData.id = Events.length+1;
-        console.log(Events.length)
-        console.log("event submitted ")
+        formData.id = Events.length + 1;
+        console.log(Events.length);
+        console.log("event submitted");
 
         const formattedData = {
             ...formData,
@@ -68,20 +71,19 @@ const EventForm = ({ ShowForm, setShowForm }) => {
             registestart: formatTimestamp(formData.registestart),
             registeend: formatTimestamp(formData.registeend),
         };
-        console.log(formattedData)
+        console.log(formattedData);
         const response = await fetch(`${import.meta.env.VITE_API_URL}/events-post`, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(formattedData),
-          });
-        
+        });
     };
 
     return (
         <form onSubmit={handleSubmit} className={`space-y-4 headerblue right-10 left-10 absolute top-40 p-8 ${ShowForm ? 'block' : 'hidden'}`}>
-            <div className="relative ">
+            <div className="relative">
                 <div className="header m-4 text-xl font-bold">
                     EVENT FORM
                 </div>
@@ -90,7 +92,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="title" className="block ">
+                    <label htmlFor="title" className="block">
                         Event Title:
                     </label>
                     <input
@@ -104,7 +106,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="start" className="block ">
+                    <label htmlFor="start" className="block">
                         Start Date & Time:
                     </label>
                     <input
@@ -118,7 +120,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="end" className="block ">
+                    <label htmlFor="end" className="block">
                         End Date & Time:
                     </label>
                     <input
@@ -132,7 +134,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="desc" className="block ">
+                    <label htmlFor="desc" className="block">
                         Event Description:
                     </label>
                     <textarea
@@ -145,7 +147,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="images" className="block ">
+                    <label htmlFor="images" className="block">
                         Event Images (URLs):
                     </label>
                     {formData.images.map((image, index) => (
@@ -162,7 +164,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="org" className="block ">
+                    <label htmlFor="org" className="block">
                         Organizer:
                     </label>
                     <input
@@ -176,7 +178,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="content" className="block ">
+                    <label htmlFor="content" className="block">
                         Content:
                     </label>
                     <textarea
@@ -189,7 +191,7 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                 </div>
 
                 <div className="m-4">
-                    <label htmlFor="points" className="block ">
+                    <label htmlFor="points" className="block">
                         Event Points:
                     </label>
                     {formData.points.map((point, index) => (
@@ -205,8 +207,63 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                     ))}
                 </div>
 
+                {/* New Fields */}
                 <div className="m-4">
-                    <label htmlFor="registe" className="block ">
+                    <label htmlFor="venue" className="block">
+                        Venue:
+                    </label>
+                    <input
+                        type="text"
+                        id="venue"
+                        name="venue"
+                        value={formData.venue}
+                        onChange={handleChange}
+                        className="border p-2 w-full"
+                    />
+                </div>
+
+                <div className="m-4">
+                    <label htmlFor="rules" className="block">
+                        Venue Rules & Regulations:
+                    </label>
+                    <textarea
+                        id="rules"
+                        name="rules"
+                        value={formData.rules}
+                        onChange={handleChange}
+                        className="border p-2 w-full"
+                    ></textarea>
+                </div>
+
+                <div className="m-4">
+                    <label htmlFor="contact" className="block">
+                        Organizer's Contact Details:
+                    </label>
+                    <input
+                        type="text"
+                        id="contact"
+                        name="contact"
+                        value={formData.contact}
+                        onChange={handleChange}
+                        className="border p-2 w-full"
+                    />
+                </div>
+
+                <div className="m-4">
+                    <label htmlFor="perks" className="block">
+                        Perks & Benefits:
+                    </label>
+                    <textarea
+                        id="perks"
+                        name="perks"
+                        value={formData.perks}
+                        onChange={handleChange}
+                        className="border p-2 w-full"
+                    ></textarea>
+                </div>
+
+                <div className="m-4">
+                    <label htmlFor="registe" className="block">
                         Registration Status:
                     </label>
                     <input
@@ -218,53 +275,58 @@ const EventForm = ({ ShowForm, setShowForm }) => {
                     />
                     <span>Open for Registration</span>
                 </div>
-                    { formData.registe && <>
-                            <div>
-                                <label htmlFor="start" className="block ">
+
+                {formData.registe && (
+                    <>
+                        <div>
+                            <label htmlFor="start" className="block">
                                 Registration Start Date & Time:
-                                </label>
-                                <input
-                                    type="datetime-local"
-                                    id="registestart"
-                                    name="registestart"
-                                    value={formData.registestart}
-                                    onChange={handleChange}
-                                    className="border p-2 w-full"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="start" className="block ">
+                            </label>
+                            <input
+                                type="datetime-local"
+                                id="registestart"
+                                name="registestart"
+                                value={formData.registestart}
+                                onChange={handleChange}
+                                className="border p-2 w-full"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="start" className="block">
                                 Registration End Date & Time:
-                                </label>
-                                <input
-                                    type="datetime-local"
-                                    id="registeend"
-                                    name="registeend"
-                                    value={formData.registeend}
-                                    onChange={handleChange}
-                                    className="border p-2 w-full"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="start" className="block ">
+                            </label>
+                            <input
+                                type="datetime-local"
+                                id="registeend"
+                                name="registeend"
+                                value={formData.registeend}
+                                onChange={handleChange}
+                                className="border p-2 w-full"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="start" className="block">
                                 Registration Link:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="registelink"
-                                    name="registelink"
-                                    value={formData.registelink}
-                                    onChange={handleChange}
-                                    className="border p-2 w-full"
-                                />
-                            </div>
-                        </>
-                    }
+                            </label>
+                            <input
+                                type="text"
+                                id="registelink"
+                                name="registelink"
+                                value={formData.registelink}
+                                onChange={handleChange}
+                                className="border p-2 w-full"
+                            />
+                        </div>
+                    </>
+                )}
+
                 <button type="submit" className="bg-blue-500 rounded-xl text-white p-2 mt-4">
                     Add Event
                 </button>
 
-                <div className="close absolute -top-4 right-0 "><button onClick={() => setShowForm(false)}>X</button></div>
+                <div className="close absolute -top-4 right-0">
+                    <button onClick={() => setShowForm(false)}>X</button>
+                </div>
             </div>
         </form>
     );

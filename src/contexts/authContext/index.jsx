@@ -137,6 +137,7 @@ export function AuthProvider({ children }) {
     Participated,
     OngoingEvents,
     user,
+    fetchUserData,
     fetchEvents
   };
 

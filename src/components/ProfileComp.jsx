@@ -1,18 +1,51 @@
-import React from "react";
+// import React from "react";
 import { Pencil } from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../contexts/authContext';
+import { use } from "react";
 
 // Demo profile info - ideally, receive as props for true reusability
-const profile = {
-  department: "Computer Science and Engineering",
-  year: "3rd Year",
-  semester: "6th Semester",
-  email: "praharsha@example.com",
-  phone: "+91-9876543210",
-};
+
 
 const ProfileComp = () => {
+  const { currentUser, user ,fetchUserData} = useAuth();
+  const [complete, setComplete] = useState(true);
+  const [profile, setData] = useState([])
+  
+  useEffect(() => {
+    const getUserData = async () => {
+      await fetchUserData();
+    };
+    getUserData();
+  }, []);
+  
+  useEffect(() => {
+    if (user) {
+      const profileData = {
+        department: user?.org || 'Null',
+        year: user?.year || 'Null',
+        semester: user?.semester || 'Null',
+        email: user?.email || 'Null',
+        phone: user?.phonenumber || 'Null',
+      };
+  
+      setData(profileData);
+  
+      const isComplete = user?.year && user?.branch && user?.semester && currentUser?.created_at;
+      setComplete(isComplete);
+    }
+  }, [user]);
+
+  
+  
+  
+  // console.log(profile.department)
+
   return (
-    <div className="flex items-start justify-center min-h-screen  transition-colors duration-300">
+    <div className="flex flex-col items-center justify-center gap-4 transition-colors duration-300">
+      {!complete && (<div class="w-full bg-red-100 text-red-500 p-2">
+              Please complete your profile by clicking on Edit profile.
+      </div>)}
       <div className="relative w-full max-w-2xl rounded-xl bg-white dark:bg-gray-800 shadow-lg ring-1 ring-gray-100 dark:ring-gray-700 p-8 border border-gray-200 dark:border-gray-700">
         {/* Edit Button */}
         <button
@@ -27,31 +60,31 @@ const ProfileComp = () => {
           {/* Department */}
           <div className="flex flex-col gap-2">
             <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Department</span>
-            <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.department}</span>
+            {profile?.department ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.department}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
           </div>
 
           {/* Year */}
           <div className="flex flex-col gap-2">
             <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Year</span>
-            <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.year}</span>
+            {profile?.year ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.year}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
           </div>
 
           {/* Semester */}
           <div className="flex flex-col gap-2">
             <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Semester</span>
-            <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.semester}</span>
+            {profile?.semester ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.semester}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
           </div>
 
           {/* Contact Information */}
           <div className="space-y-4 mt-6">
             <div className="flex flex-col gap-2">
               <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Email</span>
-              <span className="font-medium text-gray-900 dark:text-white text-lg">{profile.email}</span>
+              {<span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.email}</span> }
             </div>
 
             <div className="flex flex-col gap-2">
               <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Phone</span>
-              <span className="font-medium text-gray-900 dark:text-white text-lg">{profile.phone}</span>
+              {profile?.phonenumber ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.phonenumber}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
             </div>
           </div>
         </div>
