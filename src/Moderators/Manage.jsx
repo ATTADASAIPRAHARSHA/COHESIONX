@@ -13,7 +13,7 @@ const Manage = () => {
         <>
             <div className="h-28"></div>
             <div className="m-5 mx-24">
-                <div className="info bglightblue  rounded-lg py-4 px-16">
+                <div className="info  bgbrightblue  rounded-lg py-4 px-16">
                     <div className="text-left my-10">
                         <div className='text-lg'>Welcome <b className='text-xl'>Moderators!</b></div>
                         <br />

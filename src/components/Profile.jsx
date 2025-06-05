@@ -11,7 +11,7 @@ import ProfileComp from './ProfileComp.jsx';
 
 const Profile = () => {
   const { currentUser, IsLoggedIn, updateIsLoggedIn, user, Role } = useAuth();
-  const [Display, setDisplay] = useState('Profilepage');
+  const [Display, setDisplay] = useState('Dashboard');
 
   useEffect(() => {
     if (currentUser) {
@@ -20,7 +20,7 @@ const Profile = () => {
   }, [currentUser]);
 
 
-  
+  // console.log("hi")
 
   const handleDisplaySet = (e) => {
     setDisplay(e.target.value);

@@ -12,10 +12,10 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0.01) {
-        roundref.current.style.borderRadius = '50px'
+        // roundref.current.style.borderRadius = '50px'
         setScrolled(true);
       } else {
-        roundref.current.style.borderRadius = '10px'
+        // roundref.current.style.borderRadius = '10px'
         setScrolled(false);
       }
     };

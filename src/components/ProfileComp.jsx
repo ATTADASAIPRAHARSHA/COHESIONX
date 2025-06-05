@@ -12,15 +12,14 @@ const ProfileComp = () => {
   const [complete, setComplete] = useState(true);
   const [profile, setData] = useState([])
   
-  useEffect(() => {
-    const getUserData = async () => {
-      await fetchUserData();
-    };
-    getUserData();
-  }, []);
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     await fetchUserData();
+  //   };
+  //   getUserData();
+  // }, []);
   
   useEffect(() => {
-    if (user) {
       const profileData = {
         department: user?.org || 'Null',
         year: user?.year || 'Null',
@@ -33,13 +32,12 @@ const ProfileComp = () => {
   
       const isComplete = user?.year && user?.branch && user?.semester && currentUser?.created_at;
       setComplete(isComplete);
-    }
-  }, [user]);
+  }, []);
 
   
   
   
-  // console.log(profile.department)
+  console.log(user)
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 transition-colors duration-300">
@@ -60,31 +58,32 @@ const ProfileComp = () => {
           {/* Department */}
           <div className="flex flex-col gap-2">
             <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Department</span>
-            {profile?.department ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.department}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
+            <span className="font-semibold text-gray-900 dark:text-white text-xl">{user?.org ?? "null"}
+            </span>
           </div>
 
           {/* Year */}
           <div className="flex flex-col gap-2">
             <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Year</span>
-            {profile?.year ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.year}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
+            <span className="font-semibold text-gray-900 dark:text-white text-xl">{user?.year ?? "NULL"}</span>
           </div>
 
           {/* Semester */}
           <div className="flex flex-col gap-2">
             <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Semester</span>
-            {profile?.semester ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.semester}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
+            <span className="font-semibold text-gray-900 dark:text-white text-xl">{user?.semester ?? "NULL"}</span>
           </div>
 
           {/* Contact Information */}
           <div className="space-y-4 mt-6">
             <div className="flex flex-col gap-2">
               <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Email</span>
-              {<span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.email}</span> }
+              {<span className="font-semibold text-gray-900 dark:text-white text-xl">{user?.email ?? "NULL"}</span> }
             </div>
 
             <div className="flex flex-col gap-2">
               <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide">Phone</span>
-              {profile?.phonenumber ? <span className="font-semibold text-gray-900 dark:text-white text-xl">{profile.phonenumber}</span> : <span className="font-semibold text-gray-900 dark:text-white text-xl">Null</span>}
+              <span className="font-semibold text-gray-900 dark:text-white text-xl">{user?.phonenumber ?? "NULL"}</span>
             </div>
           </div>
         </div>

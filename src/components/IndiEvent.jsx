@@ -1,82 +1,3 @@
-// import React, { useEffect, useState } from 'react'
-// import { useParams } from 'react-router-dom'
-// import { useAuth } from '../contexts/authContext'
-
-// const IndiEvent = () => {
-//     const { Events , Org , Role} = useAuth();
-//     const { id } = useParams();
-//     console.log('URL Parameter id:', id)
-//     const [IndiEvent, setIndiEvent] = useState({});
-
-//     useEffect(() => {
-//         console.log('useEffect triggered. Events:', Events, 'id:', id);
-//         const event = Events.find((e) => e.id === parseInt(id));
-//         console.log('Found event:', event);
-//         if (!event) {
-//             console.warn('No event found with id:', id);
-//         }
-//         setIndiEvent(event || {});
-//     }, [Events, id]);
-
-//     console.log(IndiEvent);
-
-//     const start = IndiEvent.start ? new Date(IndiEvent.start) : null;
-//     const end = IndiEvent.end ? new Date(IndiEvent.end) : null;
-
-//     return (<div className=' mx-40 h-full pt-40 '>
-//         <div className="bg-blue-200 p-8 px-12 rounded bg-opacity-70">
-//             <h1 className='text-3xl my-2'>{IndiEvent.title || 'No title available'}</h1>
-//             <p className='text-lg'>{IndiEvent.desc || 'No description available'}</p>
-//             <div className="event-images h-96 text-center">
-//                 {IndiEvent.images ? (
-//                     IndiEvent.images.map((image, index) => {
-//                         console.log('Rendering image:', image);
-//                         return (
-//                             <img 
-//                                 key={index} 
-//                                 src={image} 
-//                                 alt={`Event ${IndiEvent.title} image ${index}`}
-//                                 onError={(e) => {
-//                                     console.error('Image failed to load:', image);
-//                                     e.target.src = '/fallback-image.png'; 
-//                                 }}
-//                             />
-//                         );
-//                     })
-//                 ) : (
-//                     <p className='flex justify-center items-center w-full h-full'>No images available</p>
-//                 )}
-//             </div>
-//             <div className='my-10 text-justify'><p>{IndiEvent.content}</p></div>
-//             <div className="points">
-//                 <ul className='list-disc pl-16'>
-//                     {
-//                         IndiEvent.points?.map((e)=>{
-//                             return <li className='text-left p-2'>{e}</li>
-//                         })
-//                     }
-//                 </ul>
-//             </div>
-//             <div className='my-10 px-12'>
-
-//             <div className="details">Event Details</div>
-//             <div className="timings text-left">Timings: {start ? start.toLocaleTimeString() : 'N/A'}</div>
-//             <div className="timings text-left">Start Date: {start ? start.toDateString() : 'N/A'}</div>
-//             <div className="timings text-left">End Date: {end ? end.toDateString() : 'N/A'}</div>
-
-//             <div className="venue"></div>
-//             </div>
-
-//             <div className="register">{IndiEvent.registe === 'true' && <button className='bg-blue-500 p-2 rounded-full px-5 '>Register Now</button>}</div>
-//         </div>
-//         </div>
-//     );
-// }
-
-// export default IndiEvent;
-
-
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
@@ -104,7 +25,7 @@ const EventDisplay = () => {
 
   useEffect(() => {
     fetchEvents();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }, [])
 
 
@@ -260,10 +181,10 @@ const EventDisplay = () => {
             </div>
 
             {/* Meta Info Grid */}
-            <div className='grid md:grid-cols-3 gap-4 text-[15px] text-gray-300'>
-              <div className='flex gap-3 items-center'>
+            <div className='grid md:grid-cols-3 gap-4 text-[18px] text-gray-300'>
+              <div className='flex gap-3 items-center justify-center'>
                 <Calendar className='text-vividpurple' size={20} />
-                <div className='flex items-center'>{formatDate(IndiEvent.start)}</div>
+                <div className='flex '>{formatDate(IndiEvent.start)}</div>
               </div>
               <div className='flex gap-3 items-center'>
                 <Clock className='text-vividpurple' size={20} />
@@ -277,13 +198,13 @@ const EventDisplay = () => {
 
             {/* Organized by & Target */}
             <div className='flex flex-wrap gap-2 mt-1 items-center'>
-              <span className='inline-flex items-center bg-vividpurple/10 text-vividpurple border border-vividpurple/30 rounded-full px-5 py-3 text-xs font-semibold'>
-                <Users size={16} className='mr-1' /> {IndiEvent.org}
+              <span className='inline-flex items-center bg-vividpurple/10 text-vividpurple border border-vividpurple/30 rounded-full px-5 py-3 text-xl font-semibold'>
+                <Users size={18} className='mr-1 text-lg' /> {IndiEvent.org}
               </span>
-              <span className="inline-flex items-center bg-oceanblue/10 text-oceanblue border border-oceanblue/40 rounded-full px-5 py-3 text-xs font-semibold">
+              <span className="inline-flex items-center bg-oceanblue/10 text-oceanblue border border-oceanblue/40 rounded-full px-5 py-3 text-xl font-semibold">
                 <BadgeCheck size={16} className="mr-1" /> {formattedBranch} / {formattedYear}
               </span>
-              <span className='inline-flex items-center bg-gray-700 text-white border border-gray-600 rounded-full px-3 py-1 text-xs font-semibold'>
+              <span className='inline-flex items-center bg-gray-700 text-white border border-gray-600 rounded-full px-3 py-1 text-lg font-semibold'>
                 <User size={15} className='mr-1' />
                 {IndiEvent.slots?.filled}/{IndiEvent.slots?.total} slots filled
               </span>
@@ -294,7 +215,7 @@ const EventDisplay = () => {
               <button
                 onClick={handleRegister}
                 disabled={IndiEvent.slots?.filled >= IndiEvent.slots?.total}
-                className={`px-6 py-2 mt-2 text-base rounded-full font-semibold transition hover:scale-105 shadow-md ${IndiEvent.slots?.filled >= IndiEvent.slots?.total
+                className={`px-6 py-2 mt-2 text-lg text-base rounded-full font-bold transition hover:scale-105 shadow-md border border-white ${IndiEvent.slots?.filled >= IndiEvent.slots?.total
                   ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
                   : 'bg-vividpurple text-white hover:bg-vividpurple/90'
                   }`}
@@ -305,7 +226,7 @@ const EventDisplay = () => {
               </button>
               <a
                 href='#rules'
-                className='ml-2 underline text-xs text-vividpurple hover:text-oceanblue transition'
+                className='ml-2 underline text-lg text-vividpurple hover:text-oceanblue transition'
               >
                 See Rules
               </a>
@@ -313,18 +234,18 @@ const EventDisplay = () => {
 
             {/* Description */}
             <section>
-              <h2 className='text-lg font-bold mb-1 flex items-center gap-2'>
+              <h2 className='text-lg font-bold mb-3 flex items-center gap-2'>
                 <FileText className='text-vividpurple' size={18} />
                 Event Description
               </h2>
-              <p className='text-[15px] text-gray-300 leading-relaxed'>
+              <p className='text-[18px] text-gray-300 leading-relaxed'>
                 {IndiEvent.description || 'No description available'}
               </p>
             </section>
 
             {/* Perks/Benefits */}
-            <section>
-              <h2 className='text-lg font-bold mb-1 flex items-center gap-2'>
+            <section className='py-10'>
+              <h2 className='text-lg font-bold mb-1 flex items-center gap-2 '>
                 <BadgeCheck className='text-oceanblue' size={18} />
                 Perks & Benefits
               </h2>
@@ -332,7 +253,7 @@ const EventDisplay = () => {
                 {IndiEvent.perks?.map((perk, i) => (
                   <li
                     key={i}
-                    className='bg-gradient-to-l from-oceanblue/20 to-vividpurple/10 text-vividpurple border border-vividpurple/10 rounded-full px-4 py-1 text-xs font-semibold hover-scale'
+                    className='bg-gradient-to-l from-oceanblue/20 to-vividpurple/10 text-vividpurple border border-vividpurple/10 rounded-full px-4 py-1 text-lg font-bold hover-scale'
                   >
                     {perk}
                   </li>

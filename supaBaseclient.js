@@ -1,6 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Load dotenv at the top level (only in Node.js)
 if (typeof process !== "undefined" && process.versions?.node) {
     await import('dotenv/config');
 }

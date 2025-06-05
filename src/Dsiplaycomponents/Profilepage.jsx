@@ -13,6 +13,8 @@ const Profilepage = () => {
     setComplete(isComplete);
     
   }, [])
+
+  console.log('hi')
   
   const handleedit = ()=>{
 

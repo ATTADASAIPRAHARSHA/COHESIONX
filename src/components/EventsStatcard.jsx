@@ -1,51 +1,54 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 import { Users, CircleCheck, BarChart as BarIcon } from "lucide-react";
+import { useAuth } from "../contexts/authContext";
 
 //participated attended 
-const chartColors = ["#00ABE4", "#355070", "#D1D5DB"];
-
-const pieData = [
-    { name: "Participated", value: 34 },
-    { name: "Attended", value: 24 },
-    { name: "Missed", value: 12 },
-];
-const total = pieData.reduce((sum, d) => sum + d.value, 0);
-
-const stats = [
-    {
-        label: "Total",
-        value: total,
-        icon: <Users size={26} className="text-violet-500" />,
-        color: "from-violet-500 to-blue-400",
-    },
-    {
-        label: "Participated",
-        value: pieData[0].value,
-        icon: <BarIcon size={26} className="text-sky-500" />,
-        color: "from-sky-400 to-blue-500",
-    },
-    {
-        label: "Attended",
-        value: pieData[1].value,
-        icon: <CircleCheck size={26} className="text-orange-400" />,
-        color: "from-orange-400 to-pink-400",
-    },
-];
-
-const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-        return (
-            <div className="rounded-xl px-3 py-2 border border-gray-200 bg-white text-sm text-gray-900 shadow-md">
-                <span className="font-semibold">{payload[0].name}:</span>{" "}
-                {payload[0].value}
-            </div>
-        );
-    }
-    return null;
-};
 
 const EventStatsCard = () => {
+    
+    const chartColors = ["#00ABE4", "#355070", "#D1D5DB"];
+    const {Events , user } = useAuth();
+    const pieData = [
+        { name: "Participated", value: user["participated-events"].length},
+        { name: "Ongoing", value: user["ongoing-events"].length },
+        { name: "Total", value: Events.length },
+    ];
+    const total = Events.length;
+    
+    const stats = [
+        {
+            label: "Total",
+            value: total,
+            icon: <Users size={26} className="text-violet-500" />,
+            color: "from-violet-500 to-blue-400",
+        },
+        {
+            label: "Participated",
+            value: pieData[0].value,
+            icon: <BarIcon size={26} className="text-sky-500" />,
+            color: "from-sky-400 to-blue-500",
+        },
+        {
+            label: "Attended",
+            value: pieData[1].value,
+            icon: <CircleCheck size={26} className="text-orange-400" />,
+            color: "from-orange-400 to-pink-400",
+        },
+    ];
+    
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="rounded-xl px-3 py-2 border border-gray-200 bg-white text-sm text-gray-900 shadow-md">
+                    <span className="font-semibold">{payload[0].name}:</span>{" "}
+                    {payload[0].value}
+                </div>
+            );
+        }
+        return null;
+    };
+
     return (
         <div className="w-full mx-auto p-6 rounded-2xl shadow-xl flex  gap-8  md:items-center animate-fade-in">
 
